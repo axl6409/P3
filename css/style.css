@@ -168,6 +168,9 @@ table {
 	width: 100%;
 	height: auto;
 }
+.item__image img {
+	width: 100%;
+}
 
 .item__body {
 	padding: 25px;
@@ -188,6 +191,7 @@ table {
 
 .carousel {
 	position: relative;
+	padding: 10px;
 }
 
 .carousel__container::after {
