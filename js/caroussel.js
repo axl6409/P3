@@ -28,7 +28,7 @@ class Carousel {
 		this.element.appendChild(root) // Crée une DIV avec l'élément "root" dans l'élément #blocCarousel
 		this.children.forEach((child) => { // Utilisation de la methode forEach sur mes éléments enfants
 			let item = this.createDivWithClass('carousel__item') // Création de mes container parents avec la class createDivWidthClass
-			item.style.width = ((100 / this.options.slidesVisible) / ratio ) + "%" // régle le style des items :
+			item.style.width = ((100 / this.options.slidesVisible) / ratio ) + "%" // régle le style des items : l'élément visible divisé par le ratio sur 100 et on ajoute le pourcentage
 			item.appendChild(child) // On rajoute les enfants dans les "items" 
 			container.appendChild(item) // On rajoute les "items" dans le container
 		})
