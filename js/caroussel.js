@@ -1,5 +1,3 @@
-// Caroussel JS
-
 // Class Caroussel
 class Carousel {
 
@@ -29,15 +27,16 @@ class Carousel {
 		}, options)
 
 		let children = [].slice.call(element.children) // Conserve les éléments enfant dans un tableau
-		this.isMobile = true
+		this.isMobile = false
 		this.currentItem = 0
+		this.moveCallbacks = []
 
 		// Modification du DOM
 		this.root = this.createDivWithClass('carousel') // Création d'une div avec la class carousel
 		this.container = this.createDivWithClass('carousel__container') // Création d'une div avec la class carousel__container
+		this.root.setAttribute('tabindex', '0')
 		this.root.appendChild(this.container) // Insère la DIV carousel__container dans la DIV carousel
 		this.element.appendChild(this.root) // Crée une DIV avec l'élément "root" dans l'élément #blocCarousel
-		this.moveCallbacks = []
 		this.items = children.map((child) => { // Utilisation de la methode forEach sur mes éléments enfants
 			let item = this.createDivWithClass('carousel__item') // Création de mes container parents avec la class createDivWidthClass
 			
@@ -52,7 +51,13 @@ class Carousel {
 		this.moveCallbacks.forEach(cb => cb(0))
 		this.onWindowResize()
 		window.addEventListener('resize', this.onWindowResize.bind(this)) // Vérifie le redimensionnement de la fenetre pour le responsive du carousel
-
+		this.root.addEventListener('keyup', e => {
+			if (e.key === 'ArrowRight' || e.key === 'Right') {
+				this.next()
+			} else if (e.key === 'ArrowLeft' || e.key === 'Left') {
+				this.prev()
+			}
+		})
 	} 
 
 	// Applique les bonnes dimensions aux éléments du carousel
@@ -62,7 +67,7 @@ class Carousel {
 		this.items.forEach(item => item.style.width = ((100 / this.slidesVisible) / ratio ) + "%" )// régle le style des items : l'élément visible divisé par le ratio sur 100 et on ajoute le pourcentage
 	}
 
-	// Methode de création de la navigation
+	// Methode de création de la navigation dans le DOM
 	createNavigation() {
 		let nextButton = this.createDivWithClass('carousel__next')
 		let prevButton = this.createDivWithClass('carousel__prev')
@@ -81,11 +86,13 @@ class Carousel {
 			}
 
 			if (this.items[this.currentItem + this.slidesVisible] === undefined) {
-				prevButton.classList.add('carousel__next--hidden')
+				nextButton.classList.add('carousel__next--hidden')
 			} else {
-				prevButton.classList.remove('carousel__next--hidden')
+				nextButton.classList.remove('carousel__next--hidden')
 			}
+
 		})
+
 
 	}
 
@@ -105,15 +112,27 @@ class Carousel {
 	gotoItem (index) {
 		
 		if (index < 0) {
-			index = this.items.length - this.options.slidesVisible
-		} else if (index >= this.items.length || (this.items[this.currentItem + this.options.slidesVisible] === undefined && index > this.currentItem)) {
-			index = 0
+			if (this.options.loop) {
+				index = this.items.length - this.slidesVisible
+			} else {
+				return
+			}
+		} else if (index >= this.items.length || (this.items[this.currentItem + this.slidesVisible] === undefined && index > this.currentItem)) {
+			if (this.options.loop) {
+				index = 0
+			} else {
+				return
+			}
 		}
 		let translateX = index * -100 / this.items.length
 		this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)'
 		this.currentItem = index
 		this.moveCallbacks.forEach(cb => cb(index))
-	}
+
+	} 
+
+
+	
 
 	/**
 	 *
@@ -122,7 +141,6 @@ class Carousel {
 
 	onMove (cb) {
 		this.moveCallbacks.push(cb)
-
 	}
 
 
@@ -162,6 +180,7 @@ class Carousel {
 		return this.isMobile ? 1 : this.options.slidesToScroll
 	}
 
+
 	/**
 	 *
 	 * @returns {number}
@@ -178,7 +197,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Création de la class carousel
 	new Carousel(document.querySelector('#carousel'), {
-		
-		loop: true
+		slidesVisible: 1,
+      	slidesToScroll: 1,
+      	loop: false
 	})
 })
