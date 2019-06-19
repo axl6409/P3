@@ -58,6 +58,8 @@ class Carousel {
 				this.prev()
 			}
 		})
+
+		this.autoSlide()
 	} 
 
 	// Applique les bonnes dimensions aux éléments du carousel
@@ -96,6 +98,10 @@ class Carousel {
 
 	}
 
+	autoSlide () {
+		
+	}
+
 	next () {
 		this.gotoItem(this.currentItem + this.slidesToScroll)
 	}
@@ -129,8 +135,7 @@ class Carousel {
 		this.currentItem = index
 		this.moveCallbacks.forEach(cb => cb(index))
 
-	} 
-
+	}
 
 	
 
