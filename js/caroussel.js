@@ -71,12 +71,12 @@ class Carousel {
 
 	// Methode de création de la navigation dans le DOM
 	createNavigation() {
-		let nextButton = this.createDivWithClass('carousel__next')
-		let prevButton = this.createDivWithClass('carousel__prev')
-		this.root.appendChild(nextButton)
-		this.root.appendChild(prevButton)
-		nextButton.addEventListener('click', this.next.bind(this))
-		prevButton.addEventListener('click', this.prev.bind(this))
+		let nextButton = this.createDivWithClass('carousel__next') // Crée le bouton next
+		let prevButton = this.createDivWithClass('carousel__prev') // Crée le bouton prev
+		this.root.appendChild(nextButton) // Place le bouton dans le carousel
+		this.root.appendChild(prevButton) // Place le bouton dans le carousel
+		nextButton.addEventListener('click', this.next.bind(this)) // Ajoute un evenement sur le bouton, au click et effectue la methode next
+		prevButton.addEventListener('click', this.prev.bind(this)) // Ajoute un evenement sur le bouton, au click et effectue la methode prev
 		if (this.options.loop === true) {
 			return
 		}
@@ -98,9 +98,11 @@ class Carousel {
 
 	}
 
-	autoSlide () {
-		
-	}
+	/*
+	 *
+	 * Methodes pour les boutons next et prev
+	 *
+	 */
 
 	next () {
 		this.gotoItem(this.currentItem + this.slidesToScroll)
@@ -110,9 +112,12 @@ class Carousel {
 		this.gotoItem(this.currentItem - this.slidesToScroll)
 	}
 
+
 	/**
+	 *
 	 * Déplace le carousel vers l'élément ciblé
 	 * @param {number} index
+	 *
 	 */
 
 	gotoItem (index) {
