@@ -14,6 +14,7 @@ class Carousel {
 	 * @param {Object} [options.slidesToScroll = 1] Nombres d'éléments à faire défiler
 	 * @param {Object} [options.slidesVisible = 1] Nombres d'éléments visibles dans un slide
 	 * @param {boolean} [options.loop = false] Doit-on boucler en fin de carousel
+	 * 
 	*/
 
 	// Methode avec deux paramètres ou objet vide
@@ -34,7 +35,7 @@ class Carousel {
 		// Modification du DOM
 		this.root = this.createDivWithClass('carousel') // Création d'une div avec la class carousel
 		this.container = this.createDivWithClass('carousel__container') // Création d'une div avec la class carousel__container
-		this.root.setAttribute('tabindex', '0')
+		this.root.setAttribute('tabindex', '0') // Ajoute un nouvel attribut a root et définis la navigation par les fleches du clavier
 		this.root.appendChild(this.container) // Insère la DIV carousel__container dans la DIV carousel
 		this.element.appendChild(this.root) // Crée une DIV avec l'élément "root" dans l'élément #blocCarousel
 		this.items = children.map((child) => { // Utilisation de la methode forEach sur mes éléments enfants
@@ -59,7 +60,7 @@ class Carousel {
 			}
 		})
 
-		this.autoSlide()
+
 	} 
 
 	// Applique les bonnes dimensions aux éléments du carousel
@@ -73,11 +74,14 @@ class Carousel {
 	createNavigation() {
 		let nextButton = this.createDivWithClass('carousel__next') // Crée le bouton next
 		let prevButton = this.createDivWithClass('carousel__prev') // Crée le bouton prev
-		this.root.appendChild(nextButton) // Place le bouton dans le carousel
-		this.root.appendChild(prevButton) // Place le bouton dans le carousel
+		let playButton = this.createDivWithClass('carousel__play') // Crée le bouton play
+		this.root.appendChild(nextButton) // Place le bouton next dans le carousel
+		this.root.appendChild(prevButton) // Place le bouton prev dans le carousel
+		this.root.appendChild(playButton) // Place le bouton play dans le carousel
 		nextButton.addEventListener('click', this.next.bind(this)) // Ajoute un evenement sur le bouton, au click et effectue la methode next
 		prevButton.addEventListener('click', this.prev.bind(this)) // Ajoute un evenement sur le bouton, au click et effectue la methode prev
-		if (this.options.loop === true) {
+		playButton.addEventListener('click', this.play.bind(this)) // Ajoute un evenement sur le bouton, au click et effectue la methode play
+		if (this.options.loop === true) { 
 			return
 		}
 		this.onMove(index => {
@@ -112,6 +116,16 @@ class Carousel {
 		this.gotoItem(this.currentItem - this.slidesToScroll)
 	}
 
+	play () {
+		
+
+		setInterval(function () {
+			
+			gotoItem(this.currentItem + this.slidesToScroll)
+
+		}, 5000)	
+	}
+
 
 	/**
 	 *
@@ -141,7 +155,6 @@ class Carousel {
 		this.moveCallbacks.forEach(cb => cb(index))
 
 	}
-
 	
 
 	/**
@@ -161,13 +174,12 @@ class Carousel {
 
 
 	onWindowResize () {
-		let mobile = window.innerWidth < 800
-		if (mobile !== this.isMobile) {
+		let mobile = window.innerWidth < 800 // Déclare la variable mobile qui cible la fenetre avec une largeur inferieure à 800px
+		if (mobile !== this.isMobile) { 
 			this.isMobile = mobile
 			this.setStyle()
 			this.moveCallbacks.forEach(cb => cb(this.currentItem))
 		}
-
 	}
 
 	/**
