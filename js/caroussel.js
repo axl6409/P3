@@ -153,6 +153,12 @@ class Carousel {
 		this.moveCallbacks.push(cb)
 	}
 
+	/*
+	 *
+	 * Methode pour le responsive du carousel
+	 *
+	 */
+
 
 	onWindowResize () {
 		let mobile = window.innerWidth < 800
@@ -164,14 +170,13 @@ class Carousel {
 
 	}
 
-
-
-	// Création de la methode pour créer mes div
-
 	/**
+	 *
+	 * Création de la methode pour créer mes div
 	 * @param {string} className
 	 * @returns {HTMLElement}
-	*/
+	 *
+	 */
 
 	// Parametre nom de CLASS
 	createDivWithClass (className) {
