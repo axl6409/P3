@@ -233,7 +233,7 @@ table {
 	opacity: 0;
 }
 
-.carousel__next:hover, .carousel__prev:hover {
+.carousel__next:hover, .carousel__prev:hover, .carousel__play:hover {
 	transform: scale(1.2);
 }
 
@@ -242,6 +242,24 @@ table {
 	right: auto;
 	left:  -20px;
 }
+
+.carousel__play {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	background: #FFF url(../img/play.svg) center center no-repeat;
+	right: auto;
+	background-size: 20px 20px;
+	top: 10%;
+	bottom: 0;
+	margin-top: -20px;
+	right:  0px;
+	box-shadow:  0 15px 35px #32323221a, 0 5px 15px #0000001a;
+	cursor:  pointer;
+	border-radius: 50px;
+	transition: transform 0.3s, opacity 0.3s;
+}
+
 
 
 
