@@ -117,13 +117,12 @@ class Carousel {
 	}
 
 	play () {
-		
+		let i
+		let slides = this.items
+		for (i = 0; i < slides.length; i++) {
+			this.gotoItem(this.currentItem + this.slidesToScroll)
+		}
 
-		setInterval(function () {
-			
-			gotoItem(this.currentItem + this.slidesToScroll)
-
-		}, 5000)	
 	}
 
 
