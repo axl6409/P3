@@ -27,13 +27,16 @@ class Carousel {
 			slidesToScroll: 1, 
 			slidesVisible: 1,
 			loop: false,
-			infinite: false
+		    pagination: false,
+		    navigation: true,
+		    infinite: false
 		}, options)
 
 		let children = [].slice.call(element.children) // Conserve les éléments enfant dans un tableau
 		this.isMobile = false // Est-on sur Mobile ?
 		this.currentItem = 0
 		this.moveCallbacks = [] // Sauvegarde les callbacks dans une instance
+		this.offset = 0
 
 		// Modification du DOM
 		this.root = this.createDivWithClass('carousel') // Création d'une div avec la class carousel
@@ -49,19 +52,27 @@ class Carousel {
 			return item
 		})
 		if (this.options.infinite) {
-			let offset = this.options.slidesVisible * 2 - 1 // Récupere les items hors champs
+			this.offset = this.options.slidesVisible + this.options.slidesToScroll // Récupere les items hors champs
+			if (this.offset > children.length) {
+		       console.error("Vous n'avez pas assez d'élément dans le carousel", element)
+		    }
 			this.items = [
-				...this.items.slice(this.items.length - offset).map(item => item.cloneNode(true)), 
+				...this.items.slice(this.items.length - this.offset).map(item => item.cloneNode(true)), 
 				...this.items,
-				...this.items.slice(0, offset).map(item => item.cloneNode(true)),
+				...this.items.slice(0, this.offset).map(item => item.cloneNode(true)),
 			]
-			this.gotoItem(offset, false)
-			console.log(this.items)
+			this.gotoItem(this.offset, false)
+			
 		}
 
 		this.items.forEach(item => this.container.appendChild(item)) // On rajoute les "items" dans le container
 		this.setStyle()
-		this.createNavigation()
+	    if (this.options.navigation) {
+	      this.createNavigation()
+	    }
+	    if (this.options.pagination) {
+	      this.createPagination()
+	    }
 
 		// Evenements
 		this.moveCallbacks.forEach(cb => cb(this.currentItem))
@@ -74,7 +85,9 @@ class Carousel {
 				this.prev() // Lui passe la methode prev
 			}
 		})
-
+		if (this.options.infinite) {
+	      this.container.addEventListener('transitionend', this.resetInfinite.bind(this))
+	    }
 
 	} 
 
@@ -119,6 +132,30 @@ class Carousel {
 
 
 	}
+
+
+	  /**
+	   * Crée la pagination dans le DOM
+	   */
+	  createPagination () {
+	    let pagination = this.createDivWithClass('carousel__pagination')
+	    let buttons = []
+	    this.root.appendChild(pagination)
+	    for (let i = 0; i < (this.items.length - 2 * this.offset); i = i + this.options.slidesToScroll) {
+	      let button = this.createDivWithClass('carousel__pagination__button')
+	      button.addEventListener('click', () => this.gotoItem(i + this.offset))
+	      pagination.appendChild(button)
+	      buttons.push(button)
+	    }
+	    this.onMove(index => {
+	      let count = this.items.length - 2 * this.offset
+	      let activeButton = buttons[Math.floor(((index - this.offset) % count) / this.options.slidesToScroll)]
+	      if (activeButton) {
+	        buttons.forEach(button => button.classList.remove('carousel__pagination__button--active'))
+	        activeButton.classList.add('carousel__pagination__button--active')
+	      }
+	    })
+	  }
 
 	/*
 	 *
@@ -181,6 +218,18 @@ class Carousel {
 	    this.currentItem = index // Définis l'élément comme index
 	    this.moveCallbacks.forEach(cb => cb(index)) // Appel des callbacks les uns après les autres avec en l'index courant en parametre
 
+	  }
+
+
+	  /**
+	   * Déplace le container pour donner l'impression d'un slide infini
+	   */
+	  resetInfinite () {
+	    if (this.currentItem <= this.options.slidesToScroll) {
+	      this.gotoItem(this.currentItem + (this.items.length - 2 * this.offset), false)
+	    } else if (this.currentItem >= this.items.length - this.offset) {
+	      this.gotoItem(this.currentItem - (this.items.length - 2 * this.offset), false)
+	    }
 	  }
 	
 
@@ -246,14 +295,19 @@ class Carousel {
 
 }
 
-// Attend le chargement du DOM
-document.addEventListener('DOMContentLoaded', function () {
+let onReady = function () {
 
-	// Création de la class carousel
-	new Carousel(document.querySelector('#carousel'), {
-		slidesVisible: 2,
-      	slidesToScroll: 2,
-      	infinite: true
-	})
+  new Carousel(document.querySelector('#carousel'), {
+      slidesVisible: 1,
+      slidesToScroll: 1,
+      loop: false,
+      infinite: true,
+      pagination: true
+  })
 
-})
+}
+
+if (document.readyState !== 'loading') {
+  onReady()
+}
+document.addEventListener('DOMContentLoaded', onReady)
