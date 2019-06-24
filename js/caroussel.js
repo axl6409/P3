@@ -14,6 +14,7 @@ class Carousel {
 	 * @param {Object} [options.slidesToScroll = 1] Nombres d'éléments à faire défiler
 	 * @param {Object} [options.slidesVisible = 1] Nombres d'éléments visibles dans un slide
 	 * @param {boolean} [options.loop = false] Doit-on boucler en fin de carousel
+	 * @param {boolean} [options.infinite = false] 
 	 * 
 	*/
 
@@ -22,15 +23,17 @@ class Carousel {
 
 		this.element = element // sauvegarde l'élément dans une variable "element"
 		this.options = Object.assign({}, { // Création de la propriété "options" assigné à l'objet et les valeurs par default
-			slidesToScroll: 1, // Propriétés par défault
+			// Propriétés par défault 
+			slidesToScroll: 1, 
 			slidesVisible: 1,
-			loop: false
+			loop: false,
+			infinite: false
 		}, options)
 
 		let children = [].slice.call(element.children) // Conserve les éléments enfant dans un tableau
-		this.isMobile = false
+		this.isMobile = false // Est-on sur Mobile ?
 		this.currentItem = 0
-		this.moveCallbacks = []
+		this.moveCallbacks = [] // Sauvegarde les callbacks dans une instance
 
 		// Modification du DOM
 		this.root = this.createDivWithClass('carousel') // Création d'une div avec la class carousel
@@ -42,21 +45,33 @@ class Carousel {
 			let item = this.createDivWithClass('carousel__item') // Création de mes container parents avec la class createDivWidthClass
 			
 			item.appendChild(child) // On rajoute les enfants dans les "items" 
-			this.container.appendChild(item) // On rajoute les "items" dans le container
+
 			return item
 		})
+		if (this.options.infinite) {
+			let offset = this.options.slidesVisible * 2 - 1 // Récupere les items hors champs
+			this.items = [
+				...this.items.slice(this.items.length - offset).map(item => item.cloneNode(true)), 
+				...this.items,
+				...this.items.slice(0, offset).map(item => item.cloneNode(true)),
+			]
+			this.gotoItem(offset, false)
+			console.log(this.items)
+		}
+
+		this.items.forEach(item => this.container.appendChild(item)) // On rajoute les "items" dans le container
 		this.setStyle()
 		this.createNavigation()
 
 		// Evenements
-		this.moveCallbacks.forEach(cb => cb(0))
-		this.onWindowResize()
+		this.moveCallbacks.forEach(cb => cb(this.currentItem))
+		this.onWindowResize() // Appel de la methode pour redimensionement sur mobile
 		window.addEventListener('resize', this.onWindowResize.bind(this)) // Vérifie le redimensionnement de la fenetre pour le responsive du carousel
-		this.root.addEventListener('keyup', e => {
-			if (e.key === 'ArrowRight' || e.key === 'Right') {
-				this.next()
-			} else if (e.key === 'ArrowLeft' || e.key === 'Left') {
-				this.prev()
+		this.root.addEventListener('keyup', e => { // Ajoute un evenement au relachement des touches du clavier
+			if (e.key === 'ArrowRight' || e.key === 'Right') { // Definis la touche flêche de droite
+				this.next() // Lui passe la methode next
+			} else if (e.key === 'ArrowLeft' || e.key === 'Left') { // Definis la touche flêche de gauche
+				this.prev() // Lui passe la methode prev
 			}
 		})
 
@@ -84,13 +99,16 @@ class Carousel {
 		if (this.options.loop === true) { 
 			return
 		}
+		// Appel de la methode onMove, en parametre
 		this.onMove(index => {
-			if (index === 0) {
-				prevButton.classList.add('carousel__prev--hidden')
-			} else {
-				prevButton.classList.remove('carousel__prev--hidden')
-			}
 
+			// Supprime ou affiche le bouton prev
+			if (index === 0) { // Si l'index est égal à zero 
+				prevButton.classList.add('carousel__prev--hidden') // Rajoute la CLASS hidden
+			} else {
+				prevButton.classList.remove('carousel__prev--hidden') // Supprime la CLASS hidden
+			}
+			// Supprime ou affiche le bouton suivant
 			if (this.items[this.currentItem + this.slidesVisible] === undefined) {
 				nextButton.classList.add('carousel__next--hidden')
 			} else {
@@ -109,20 +127,21 @@ class Carousel {
 	 */
 
 	next () {
-		this.gotoItem(this.currentItem + this.slidesToScroll)
+		this.gotoItem(this.currentItem + this.slidesToScroll) // Appel de la methode gotoItem
 	}
 
 	prev () {
-		this.gotoItem(this.currentItem - this.slidesToScroll)
+		this.gotoItem(this.currentItem - this.slidesToScroll) 
 	}
 
 	play () {
-		let i
-		let slides = this.items
-		for (i = 0; i < slides.length; i++) {
-			this.gotoItem(this.currentItem + this.slidesToScroll)
-		}
-
+		
+		
+		// let i
+		// let slides = this.items
+		// for (i = 0; i < slides.length; i++) {
+		// 	this.gotoItem(this.currentItem + this.slidesToScroll)
+		// }
 	}
 
 
@@ -130,30 +149,39 @@ class Carousel {
 	 *
 	 * Déplace le carousel vers l'élément ciblé
 	 * @param {number} index
+	 * @param {boolean} [animation = true]
 	 *
 	 */
 
-	gotoItem (index) {
-		
-		if (index < 0) {
-			if (this.options.loop) {
-				index = this.items.length - this.slidesVisible
-			} else {
-				return
-			}
-		} else if (index >= this.items.length || (this.items[this.currentItem + this.slidesVisible] === undefined && index > this.currentItem)) {
-			if (this.options.loop) {
-				index = 0
-			} else {
-				return
-			}
-		}
-		let translateX = index * -100 / this.items.length
-		this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)'
-		this.currentItem = index
-		this.moveCallbacks.forEach(cb => cb(index))
+	gotoItem (index, animation = true) {
+	    if (index < 0) { // Si l'index est inférieur à 0 il faut revenir en arrière
+		    if (this.options.loop) {
+		        index = this.items.length - this.slidesVisible // L'index alors le nombres d'éléments moins le nombres d'éléments visibles
+		    } else {
+		        return
+		    }
+		// Si l'index est supérieur ou égal aux nombres d'éléments, ou currentItem + le nombres de slides visibles et vérifie si un item correspond
+	    } else if (index >= this.items.length || (this.items[this.currentItem + this.slidesVisible] === undefined && index > this.currentItem)) {
+	      	if (this.options.loop) {
+	        	index = 0  // Alors l'index reviens à zero
+	      	} else {
+	        	return
+	      	}
+	    }
+	    // Animation de slide vers l'élément 
+	    let translateX = index * -100 / this.items.length
+	    if (animation === false) {
+	      	this.container.style.transition = 'none'
+	    }
+	    this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)' // Aplique l'alination translate3d avec X,Y,Z en parametre
+	    this.container.offsetHeight // force repaint
+	    if (animation === false) {
+	      	this.container.style.transition = ''
+	    }
+	    this.currentItem = index // Définis l'élément comme index
+	    this.moveCallbacks.forEach(cb => cb(index)) // Appel des callbacks les uns après les autres avec en l'index courant en parametre
 
-	}
+	  }
 	
 
 	/**
@@ -162,7 +190,7 @@ class Carousel {
 	 */
 
 	onMove (cb) {
-		this.moveCallbacks.push(cb)
+		this.moveCallbacks.push(cb) // Ajoute les callbacks dans mon instance tableau
 	}
 
 	/*
@@ -174,10 +202,10 @@ class Carousel {
 
 	onWindowResize () {
 		let mobile = window.innerWidth < 800 // Déclare la variable mobile qui cible la fenetre avec une largeur inferieure à 800px
-		if (mobile !== this.isMobile) { 
-			this.isMobile = mobile
-			this.setStyle()
-			this.moveCallbacks.forEach(cb => cb(this.currentItem))
+		if (mobile !== this.isMobile) { // Si la valeur de mobile est differente de celle de this.isMobile
+			this.isMobile = mobile // Change la valeur de la propriété d'instance
+			this.setStyle() // Aplique le style
+			this.moveCallbacks.forEach(cb => cb(this.currentItem)) // Rappel des callBacks avec l'item courant
 		}
 	}
 
@@ -198,22 +226,22 @@ class Carousel {
 	}
 
 	/**
-	 *
+	 * Nombre d'éléments à faire defiler
 	 * @returns {number}
 	 */
 
 	get slidesToScroll () {
-		return this.isMobile ? 1 : this.options.slidesToScroll
+		return this.isMobile ? 1 : this.options.slidesToScroll // Si le support est un mobile alors on retourne 1 ou sinon le parametre slidesToScroll
 	}
 
 
 	/**
-	 *
+	 * Nombres d'éléments à afficher
 	 * @returns {number}
 	 */
 
 	get slidesVisible () {
-		return this.isMobile ? 1 : this.options.slidesVisible
+		return this.isMobile ? 1 : this.options.slidesVisible // Si le support est un mobile alors on retourne 1 ou sinon le parametre slidesVisibles
 	}
 
 }
@@ -223,8 +251,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Création de la class carousel
 	new Carousel(document.querySelector('#carousel'), {
-		slidesVisible: 1,
-      	slidesToScroll: 1,
-      	loop: false
+		slidesVisible: 2,
+      	slidesToScroll: 2,
+      	infinite: true
 	})
+
 })
