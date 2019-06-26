@@ -134,10 +134,10 @@ class Carousel {
 	}
 
 
-	  /**
-	   * Crée la pagination dans le DOM
-	   */
-	  createPagination () {
+	/**
+	 * Crée la pagination dans le DOM
+	 */
+	createPagination () {
 	    let pagination = this.createDivWithClass('carousel__pagination')
 	    let buttons = []
 	    this.root.appendChild(pagination)
@@ -173,12 +173,12 @@ class Carousel {
 
 	play () {
 		
+
+		window.setTimeout(() => {
+			this.gotoItem(this.offset + 1, true)
+		}, 2000)
+
 		
-		// let i
-		// let slides = this.items
-		// for (i = 0; i < slides.length; i++) {
-		// 	this.gotoItem(this.currentItem + this.slidesToScroll)
-		// }
 	}
 
 
