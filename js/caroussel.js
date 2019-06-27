@@ -26,10 +26,9 @@ class Carousel {
 			// Propriétés par défault 
 			slidesToScroll: 1, 
 			slidesVisible: 1,
-			loop: false,
-		    pagination: false,
+			loop: true,
 		    navigation: true,
-		    infinite: false
+		    infinite: true
 		}, options)
 
 		let children = [].slice.call(element.children) // Conserve les éléments enfant dans un tableau
@@ -70,10 +69,6 @@ class Carousel {
 	    if (this.options.navigation) {
 	      this.createNavigation()
 	    }
-	    if (this.options.pagination) {
-	      this.createPagination()
-	    }
-
 		// Evenements
 		this.moveCallbacks.forEach(cb => cb(this.currentItem))
 		this.onWindowResize() // Appel de la methode pour redimensionement sur mobile
@@ -134,29 +129,6 @@ class Carousel {
 	}
 
 
-	/**
-	 * Crée la pagination dans le DOM
-	 */
-	createPagination () {
-	    let pagination = this.createDivWithClass('carousel__pagination')
-	    let buttons = []
-	    this.root.appendChild(pagination)
-	    for (let i = 0; i < (this.items.length - 2 * this.offset); i = i + this.options.slidesToScroll) {
-	      let button = this.createDivWithClass('carousel__pagination__button')
-	      button.addEventListener('click', () => this.gotoItem(i + this.offset))
-	      pagination.appendChild(button)
-	      buttons.push(button)
-	    }
-	    this.onMove(index => {
-	      let count = this.items.length - 2 * this.offset
-	      let activeButton = buttons[Math.floor(((index - this.offset) % count) / this.options.slidesToScroll)]
-	      if (activeButton) {
-	        buttons.forEach(button => button.classList.remove('carousel__pagination__button--active'))
-	        activeButton.classList.add('carousel__pagination__button--active')
-	      }
-	    })
-	  }
-
 	/*
 	 *
 	 * Methodes pour les boutons next et prev
@@ -172,13 +144,30 @@ class Carousel {
 	}
 
 	play () {
+
+		this.isPlayed = this.options.loop
+
+		this.isPlayed ? this.options.loop = false : this.options.loop = true
+
+		if (this.options.loop === true) {
+				
+			this.interval = window.setInterval(() => {
+				
+				this.playSlide = this.currentItem
+
+				this.gotoItem(this.playSlide + 1, true)
+				this.playSlide++
+				console.log(this.playSlide)
+				
+			}, 2000)
+			
+		} else if (this.options.loop === false) {
+			clearInterval(this.interval)
+		}
+
 		
 
-		window.setTimeout(() => {
-			this.gotoItem(this.offset + 1, true)
-		}, 2000)
-
-		
+				
 	}
 
 
@@ -250,7 +239,7 @@ class Carousel {
 
 
 	onWindowResize () {
-		let mobile = window.innerWidth < 800 // Déclare la variable mobile qui cible la fenetre avec une largeur inferieure à 800px
+		let mobile = window.innerWidth < 1200 // Déclare la variable mobile qui cible la fenetre avec une largeur inferieure à 800px
 		if (mobile !== this.isMobile) { // Si la valeur de mobile est differente de celle de this.isMobile
 			this.isMobile = mobile // Change la valeur de la propriété d'instance
 			this.setStyle() // Aplique le style
@@ -298,11 +287,11 @@ class Carousel {
 let onReady = function () {
 
   new Carousel(document.querySelector('#carousel'), {
-      slidesVisible: 1,
+      slidesVisible: 3,
       slidesToScroll: 1,
-      loop: false,
-      infinite: true,
-      pagination: true
+      loop: true,
+      navigation: true,
+      infinite: true
   })
 
 }
