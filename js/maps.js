@@ -1,37 +1,11 @@
-// Class Google Maps
-class Maps {
+var mymap = L.map('map').setView([51.505, -0.09], 13);
 
-	/*
-	 * @param {HTMLelement} element
-	 * @param {object} options
-	 * @param {object} [option.lat = 43.4833] La latitude pour le positionement de la carte
-	 * @param {object} [options.long = -1.4833] La longitude pour le positionement de la carte
-	 */
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    style: 'mapbox://styles/mapbox/light-v9',
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiYXhsNjQwOSIsImEiOiJjanhlcW9sZDYwcG5kNDFsNzI1b3hzZGIwIn0.Pj1oOeEmXLyQ1-Scsi6Kow'
+}).addTo(mymap);
 
-	constructor (element, options = {}) {
-
-	 	this.element = element
-	 	this.options = Object.assign({}, {
-
-	 		long : 43.4833,
-	 		lat : -1.4833 
-	 	})
-	}
-
-		// Parametre nom de CLASS
-	initMap () {
-
-		map = new google.maps.Map(document.getElementById('map'), {
-			center : { lat: this.lat, long:this.long},
-			zoom: 13
-		})
-	}
-}
-
-
-
-  new Maps(document.querySelector('map'), {
-      
-  })
-
-
+	
