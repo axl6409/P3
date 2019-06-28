@@ -125,7 +125,6 @@ class Carousel {
 
 		})
 
-
 	}
 
 
@@ -164,9 +163,6 @@ class Carousel {
 		} else if (this.options.loop === false) {
 			clearInterval(this.interval)
 		}
-
-		
-
 				
 	}
 
@@ -207,19 +203,19 @@ class Carousel {
 	    this.currentItem = index // Définis l'élément comme index
 	    this.moveCallbacks.forEach(cb => cb(index)) // Appel des callbacks les uns après les autres avec en l'index courant en parametre
 
-	  }
+	}
 
 
-	  /**
-	   * Déplace le container pour donner l'impression d'un slide infini
-	   */
-	  resetInfinite () {
+	/**
+	 * Déplace le container pour donner l'impression d'un slide infini
+	 */
+	resetInfinite () {
 	    if (this.currentItem <= this.options.slidesToScroll) {
 	      this.gotoItem(this.currentItem + (this.items.length - 2 * this.offset), false)
 	    } else if (this.currentItem >= this.items.length - this.offset) {
 	      this.gotoItem(this.currentItem - (this.items.length - 2 * this.offset), false)
 	    }
-	  }
+	}
 	
 
 	/**
@@ -284,19 +280,4 @@ class Carousel {
 
 }
 
-let onReady = function () {
 
-  new Carousel(document.querySelector('#carousel'), {
-      slidesVisible: 3,
-      slidesToScroll: 1,
-      loop: true,
-      navigation: true,
-      infinite: true
-  })
-
-}
-
-if (document.readyState !== 'loading') {
-  onReady()
-}
-document.addEventListener('DOMContentLoaded', onReady)
