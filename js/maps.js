@@ -1,4 +1,4 @@
-
+// Objet for display the leaflet map
 
 class MapClass {
 
@@ -9,7 +9,7 @@ class MapClass {
 		this.latView = lat
 		this.lngView = lng
 		this.zoom = zoom
-
+        this.ajaxURL = ajaxURL;
 		this.map = L.map(mapId).setView([this.latView, this.lngView], this.zoom) // Initialisation de la map
 		this.tilelayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYXhsNjQwOSIsImEiOiJjanhlcW9sZDYwcG5kNDFsNzI1b3hzZGIwIn0.Pj1oOeEmXLyQ1-Scsi6Kow', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>', // création du design de la map
@@ -20,7 +20,7 @@ class MapClass {
 		this.tilelayer.addTo(this.map)
 		this.stationModel = {
 
-			init: function (name, adress, positionlat, positionlng, banking, status, bikestands, availableBS, availableB, lastupdate) {
+			init: function (name, address, positionlat, positionlng, banking, status, bikestands, availableBS, availableB, lastupdate) {
 				this.name = name;
                 this.address = address;
                 this.position = {
@@ -62,7 +62,9 @@ class MapClass {
             shadowSize: [41, 41],
         })
         this.document = $(document)
-
+        this.regex = /......./; // enlève les chiffres et le tiret du nom de la station
+        this.name = this.container.find('#name');
+        this.firstname = this.container.find('#firstname');
         this.initSettings();
         
 

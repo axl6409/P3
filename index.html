@@ -112,8 +112,35 @@
 			<div id="map"></div>
 
 			<div id="form_container">
-				
+
+				<div id="before_form" class="presentation">
+					<p id="before_click">Cliquez sur la station de votre choix pour afficher les informations et réserver votre vélo !</p>
+					<ul>
+						<li id="station_verte"></li>
+						<li id="station_orange"></li>
+						<li id="station_rouge"></li>
+					</ul>
+				</div>
+
+				<div id="station_infos">
+					<p>Adresse : </p>
+					<p>Nombres de places : </p>
+					<p>Nombres de vélos disponibles : </p>
+				</div>
+
+				<form method="post" id="form_bikes">
+					<fieldset>
+						<legend>Réservez un vélo de cette station</legend>
+						<label for="name">Votre nom : </label><input type="text" name="name" id="name" placeholder="Votre nom" required/><br/>
+						<label for="firstname">Votre prénom : </label><input type="text" name="firstname" id="firstname" placeholder="Votre prénom" required/><br/>
+						<input type="submit" name="submit" id="reservation" value="Réservez !">
+					</fieldset>
+				</form>
+
+				<p id="nobikes">Réservation impossible (aucun vélo de disponible dans cette station)</p>
 			</div>
+
+
 		</div
 					
 		</main>
