@@ -4,7 +4,7 @@ class MapClass {
 
 	constructor(container, mapId, lat, lng, zoom, ajaxURL) {
 
-		this.container = $(container);
+		this.container = $(container)
 		this.mapID = mapId
 		this.latView = lat
 		this.lngView = lng
@@ -17,26 +17,26 @@ class MapClass {
             id: 'mapbox.streets',
             accessToken: 'pk.eyJ1IjoiYXhsNjQwOSIsImEiOiJjanhlcW9sZDYwcG5kNDFsNzI1b3hzZGIwIn0.Pj1oOeEmXLyQ1-Scsi6Kow'
         });
-		this.tilelayer.addTo(this.map)
-		this.stationModel = {
+		this.tilelayer.addTo(this.map) // Ajout du design de la map
+		this.stationModel = { // Création de l'objet station
 
 			init: function (name, address, positionlat, positionlng, banking, status, bikestands, availableBS, availableB, lastupdate) {
-				this.name = name;
-                this.address = address;
+				this.name = name
+                this.address = address
                 this.position = {
                     lat: positionlat,
                     lng: positionlng
                 };
-                this.banking = banking;
-                this.status = status;
-                this.bike_stands = bikestands;
-                this.available_bike_stands = availableBS;
-                this.available_bikes = availableB;
-                this.last_update = lastupdate;
+                this.banking = banking 
+                this.status = status
+                this.bike_stands = bikestands
+                this.available_bike_stands = availableBS
+                this.available_bikes = availableB
+                this.last_update = lastupdate
 			}
 		}
 
-		this.greenIcon = L.icon({
+		this.greenIcon = L.icon({ // Définis l'icone verte de localisation de vélos
 			iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
             iconSize: [25, 41],
             iconAnchor: [12, 41],
@@ -44,7 +44,7 @@ class MapClass {
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
             shadowSize: [41, 41],
 		})
-		this.orangeIcon = L.icon({
+		this.orangeIcon = L.icon({ // Définis l'icone orange de localisation de vélos
             iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
             iconSize: [25, 41],
             iconAnchor: [12, 41],
@@ -53,7 +53,7 @@ class MapClass {
             shadowSize: [41, 41],
         })
 
-        this.redIcon = L.icon({
+        this.redIcon = L.icon({ // Définis l'icone rouge de localisation de vélos
             iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
             iconSize: [25, 41],
             iconAnchor: [12, 41],
@@ -122,6 +122,36 @@ class MapClass {
             });
         };
     };
+
+    newMarkerClic(newStation) {
+        $('#before_form').remove()
+        $('#form_container').prepend('<p id="before_form"></p>')
+        $('#before_form').append(newStation.name.replace(this.regex, 'STATION'))
+        $('#form_container').css('display', 'block') // Affiche le bloc d'infos de la station
+        $('#station_infos p').html('') // Efface les dernières valeurs d'information
+        $('#form_container form').css('display', 'none') // Efface le formulaire
+        $('#nobikes').css('display', 'none') // Efface le message en cas de réservation impossible
+
+        $('#station_infos p:first').append(`Adresse : ${newStation.address.toLowerCase()}`) // Remplissage de l'info : Adresse
+        $('#station_infos p:eq(1)').append(`Nombre de places : ${newStation.bike_stands}`) // Remplissage de l'info : Nombre de places
+        $('#station_infos p:last').append(`Nombre de vélos disponibles : ${newStation.available_bikes}`) // Remplissage de l'info : Nombres de vélos disponibles
+
+        $('#canvas_container').css('display', 'none') // Supprime le canvas s'il est ouvert
+        $('#form_confirm').css('display', 'none') // Efface le message de confirmation 
+        $('#form_exp').css('display', 'none') // Efface le message d'expiration de réservation 
+
+        if(newStation.available_bikes > 0) { // S'il y a des vélos disponibles alors
+            $('#form_container form').css('display', 'block') // Affiche le formulaire 
+            $('html, body').animate({ // pour les mobiles scrollDown jusqu'au formulaire
+                scrollTop: $('#before_form').offset().top
+            }, 1000)
+        } else { // S'il n'y a pas de vélos disponibles :
+            $('#nobikes').css('display', 'block') // Message : réservation impossible
+            $('html, body').animate({ // pour les mobiles scrollDown jusqu'au formulaire
+                scrollTop: $('#before_form').offset().top
+            }, 1000)
+        }
+    }
 
     
 }; // fin de la classe
