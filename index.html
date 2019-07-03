@@ -108,40 +108,68 @@
 				</div>
 			</div>
 
-		<div id="map_container">
-			<div id="map"></div>
+			<div id="map_container" class="map_container">
+				<div id="map" class="map"></div>
 
-			<div id="form_container">
+				<div id="form_container" class="form_container">
 
-				<div id="before_form" class="presentation">
-					<p id="before_click">Cliquez sur la station de votre choix pour afficher les informations et réserver votre vélo !</p>
-					<ul>
-						<li id="station_verte"></li>
-						<li id="station_orange"></li>
-						<li id="station_rouge"></li>
-					</ul>
+					<div id="before_form" class="presentation">
+						<p id="before_click">Cliquez sur la station de votre choix pour afficher les informations et réserver votre vélo !</p>
+						<ul>
+							<li id="station_verte"></li>
+							<li id="station_orange"></li>
+							<li id="station_rouge"></li>
+						</ul>
+					</div>
+
+					<div id="station_infos" class="station_infos">
+						<p>Adresse : </p>
+						<p>Nombres de places : </p>
+						<p>Nombres de vélos disponibles : </p>
+					</div>
+
+					<form method="post" id="form_bikes">
+
+						<fieldset>
+
+							<legend>Réservez un vélo de cette station</legend>
+							<label for="name">Votre nom : </label><input type="text" name="name" id="name" placeholder="Votre nom" required/><br/>
+							<label for="firstname">Votre prénom : </label><input type="text" name="firstname" id="firstname" placeholder="Votre prénom" required/><br/>
+							<input type="submit" name="submit" id="reservation" value="Réservez !">
+
+						</fieldset>
+
+					</form>
+
+					<p id="nobikes">Réservation impossible (aucun vélo de disponible dans cette station)</p>
 				</div>
 
-				<div id="station_infos">
-					<p>Adresse : </p>
-					<p>Nombres de places : </p>
-					<p>Nombres de vélos disponibles : </p>
-				</div>
+				<div id="canvas_container"> <!-- Div du Canvas -->
 
-				<form method="post" id="form_bikes">
-					<fieldset>
-						<legend>Réservez un vélo de cette station</legend>
-						<label for="name">Votre nom : </label><input type="text" name="name" id="name" placeholder="Votre nom" required/><br/>
-						<label for="firstname">Votre prénom : </label><input type="text" name="firstname" id="firstname" placeholder="Votre prénom" required/><br/>
-						<input type="submit" name="submit" id="reservation" value="Réservez !">
-					</fieldset>
-				</form>
+	                <div id="canvas_message">
+	                    <p>Signez dans la case pour confirmer :</p>
+	                </div>
 
-				<p id="nobikes">Réservation impossible (aucun vélo de disponible dans cette station)</p>
+	                <div id="canvas_div">
+	                    <canvas id="canvas_resa" width="200" height="200">Apposez votre signature (si vous voyez ce message, votre navigateur n'est pas à jour)</canvas>
+	                </div>
+
+	                <div id="canvas_confirm">
+	                    <button type="submit" id="submit_canvas">Validez !</button>1
+	                    <button type="reset" id="clear_canvas">Recommencez</button>
+	                </div>
+	            </div>
 			</div>
 
-
-		</div
+			<p id="form_confirm">Vélo réservé à la station 
+				<span id="confirm_station">STATION</span> par 
+				<span id="confirm_name"> NAME</span>
+				</br>
+				Temps restant :
+				<span id="timer"></span>
+				Avant l'expiration e la session
+			</p>
+			<p id="form_exp">Réservation expirée</p>
 					
 		</main>
 
