@@ -1,14 +1,14 @@
 /* Class CANVAS */
 
-class Canvas {
+class CanvasClass {
 
 	constructor(canvasDiv, canvas) {
 
 		this.canvasDiv = $(canvasDiv)
 		this.canvas = $(canvas)
 		this.ctx = this.canvas[0].getContext("2d")
-		this.topCanvas = this.canvas[0]getBoundingClientRect().top // Pixels par rapport au haut de la page
-		this.leftCanvas = this.canvas[0]getBoundingClientRect().left // Pixels par rapport au coin gauche de la page
+		this.topCanvas = this.canvas[0].getBoundingClientRect().top // Pixels par rapport au haut de la page
+		this.leftCanvas = this.canvas[0].getBoundingClientRect().left // Pixels par rapport au coin gauche de la page
 		this.x = this.leftCanvas // Position initiale = left 0 du canvas
 		this.y = this.topCanvas // Position initiale = top 0 du canvas 
 		this.x2 = 0

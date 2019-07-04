@@ -142,23 +142,25 @@
 					</form>
 
 					<p id="nobikes">Réservation impossible (aucun vélo de disponible dans cette station)</p>
+
+					<div id="canvas_container"> <!-- Div du Canvas -->
+
+		                <div id="canvas_message">
+		                    <p>Signez dans la case pour confirmer :</p>
+		                </div>
+
+		                <div id="canvas_div">
+		                    <canvas id="canvas_resa" width="200" height="200">Apposez votre signature (si vous voyez ce message, votre navigateur n'est pas à jour)</canvas>
+		                </div>
+
+		                <div id="canvas_confirm">
+		                    <button type="submit" id="submit_canvas">Validez !</button>1
+		                    <button type="reset" id="clear_canvas">Recommencez</button>
+		                </div>
+		            </div>
 				</div>
 
-				<div id="canvas_container"> <!-- Div du Canvas -->
-
-	                <div id="canvas_message">
-	                    <p>Signez dans la case pour confirmer :</p>
-	                </div>
-
-	                <div id="canvas_div">
-	                    <canvas id="canvas_resa" width="200" height="200">Apposez votre signature (si vous voyez ce message, votre navigateur n'est pas à jour)</canvas>
-	                </div>
-
-	                <div id="canvas_confirm">
-	                    <button type="submit" id="submit_canvas">Validez !</button>1
-	                    <button type="reset" id="clear_canvas">Recommencez</button>
-	                </div>
-	            </div>
+				
 			</div>
 
 			<p id="form_confirm">Vélo réservé à la station 
@@ -190,6 +192,7 @@
 		
 		<script src="js/caroussel.js" ></script>
 		<script src="js/maps.js"></script>
+		<script src="js/reservation.js"></script>
 		<script src="js/canvas.js"></script>
 		<script src="js/main.js"></script>
 
