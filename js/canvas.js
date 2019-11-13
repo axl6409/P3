@@ -30,7 +30,7 @@ class CanvasClass {
 			console.log(this.x, this.y, this.x2, this.y2)
 			this.ctx.closePath()
 			this.ctx.stroke()
-			this.ctx.canvasFilled = true // Le canvas est rempli
+			this.canvasFilled = true // Le canvas est rempli
 			console.log("canvas rempli")
 		}
 
@@ -56,13 +56,16 @@ class CanvasClass {
 
 		this.canvas.on('mousemove', (e) => { // La souris bouge sur le canvas
 			console.log("MOUSEMOVE")
-			this.topCanvas = this.canvas[0].getBoundingClientRect().top
-			this.leftCanvas = this.canvas[0].getBoundingClientRect().left
+			this.topCanvas = this.canvas[0].getBoundingClientRect().top // Coordonées X
+			this.leftCanvas = this.canvas[0].getBoundingClientRect().left // Coordonées Y
 			this.x2 = this.x
 			this.y2 = this.y
 			this.x = e.clientX - this.leftCanvas // Coordonées sur le viewport - leftCanvas
 			this.y = e.clientY - this.topCanvas
 		})
+
+
+		// Gestion Tactile
 
 		this.canvas.on('touchstart', (e) => {
 			e.preventDefault()
@@ -92,6 +95,8 @@ class CanvasClass {
 			console.log("TOUCHMOVE")
 			console.log(this.x, this.y, this.x2, this.y2)
 		})
+
+		// Methode resize pour le responsive
 
 		$(window).on('resize', (e) => {
 			this.resize()

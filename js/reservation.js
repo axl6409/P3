@@ -54,7 +54,7 @@ class Reserv {
 
 		this.form.submit((event) => {
 			event.preventDefault()
-			console.log("Réservé !")
+			console.log("Formulaire Validé")
 			this.canvas.canvasContainer.css('display', 'block')
 			this.canvas.resize()
 			this.beforeForm = $('#before_form')
@@ -122,7 +122,7 @@ class Reserv {
 			let distance = this.stopTimer - startTimer
 			let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
 			let seconds = Math.floor((distance % (1000 * 60)) / 1000)
-			$('#timer').html(`${minutes}m ${secondes}s`)
+			$('#timer').html(`${minutes}m ${seconds}s`)
 
 			if (distance < 0) {
 				clearInterval(this.intervalResa)
