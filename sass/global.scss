@@ -1,3 +1,6 @@
 // Stylesheets Main Import
 
-@import url('/partiels/main.scss');
+@import "partiels/var.scss";
+@import "partiels/animations.scss";
+@import "partiels/carousel.scss";
+@import "partiels/main.scss";
