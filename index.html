@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Bayonne By Bike</title>
+		<title>Toulouse By Bike</title>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
@@ -28,8 +28,8 @@
 
 			<section id="welcome" class="welcome">
 				<div class="welcome_container">
-					<h1 class="font_titles">Bienvenue sur Bayonne By Bike !</h1>
-					<p>Déplacez vous à Bayonne en vélo avec notre application et notre réseau de station de vélo dans Bayonne.</p>
+					<h1 class="font_titles">Bienvenue sur Toulouse By Bike !</h1>
+					<p>Déplacez vous à Toulouse en vélo avec notre application et notre réseau de station de vélo dans Toulouse.</p>
 				</div>
 			</section>
 
@@ -94,9 +94,9 @@
 
 				<div id="form_container" class="form_container">
 
+					<button class="close_form_button"><i class="far fa-times-circle"></i></button>
 
-
-					<div id="before_form" class="presentation">
+					<div id="before_form">
 						<p id="before_click">Cliquez sur la station de votre choix pour afficher les informations et réserver votre vélo !</p>
 						<ul>
 							<li id="station_verte"></li>
@@ -105,15 +105,13 @@
 						</ul>
 					</div>
 
-					<div id="station_infos" class="station_infos">
-
-						
+					<div id="station_infos" class="station_infos">		
 						<p class="infos_adress">Adresse : </p>
 						<p class="infos_places">Nombres de places : </p>
 						<p class="infos_dispo">Nombres de vélos disponibles : </p>
 					</div>
 
-					<form method="post" id="form_bikes">
+					<form method="post" id="form_bikes" class="reserv_form">
 
 						<fieldset>
 
@@ -128,7 +126,7 @@
 
 					<p id="nobikes">Réservation impossible (aucun vélo de disponible dans cette station)</p>
 
-					<div id="canvas_container"> <!-- Div du Canvas -->
+					<div id="canvas_container" class="canvas_container"> <!-- Div du Canvas -->
 
 		                <div id="canvas_message">
 		                    <p>Signez dans la case pour confirmer :</p>
@@ -148,31 +146,38 @@
 				
 			</div>
 
-			<p id="form_confirm">Vélo réservé à la station 
-				<span id="confirm_station">STATION</span> par 
-				<span id="confirm_name"> NAME</span>
-				</br>
-				Temps restant :
-				<span id="timer"></span>
-				Avant l'expiration se la session
-			</p>
-			<p id="form_exp">Réservation expirée</p>
+			<div class="reserv_infos">
+				<p id="form_confirm" class="form_confirm">Vélo réservé à la station :
+					<span class="confirm_station" id="confirm_station">STATION</span>
+					</br> par :
+					<span class="confirm_name" id="confirm_name"> NAME</span>
+					</br>
+					Temps restant :
+					<span class="confimr_timer" id="timer"></span>
+					Avant l'expiration se la session
+				</p>
+
+				
+			</div>
+			
+			<div class="reserv_exp">
+				<p id="form_exp">Réservation expirée</p>
+			</div>
+			
 					
 		</main>
 
 		<footer id="footer" class="footer">
 			<div class="footer_logo">
-				<img src="img/logo1.png" alt="">
+				<img class="logo" src="img/cyclist.png" alt="icone du site Toulouse By Bike">
 			</div>
-			<ul class="footer_nav">
-				<li><a href="#">Item 1</a></li>
-			</ul>
 		</footer>
 	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-		   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-		   crossorigin=""></script>
+	    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+	    crossorigin=""></script>
+		<script src="https://kit.fontawesome.com/478ea9f976.js" crossorigin="anonymous"></script>
 
 		
 		<script src="js/caroussel.js" ></script>
