@@ -13,3 +13,14 @@ $(document).ready(function() {
 	let reservation = new Reserv('#form_bikes', 20 * 60 * 1000, new CanvasClass('#canvas_div', '#canvas_resa'))
 	
 })
+
+
+
+$(document).ready(function() {
+	$('.nav_links').on('click', function() { // Au clic sur un élément
+		var page = $(this).attr('href'); // Page cible
+		var speed = 750; // Durée de l'animation (en ms)
+		$('html, body').animate( { scrollTop: $(page).offset().top }, speed ); // Go
+		return;
+	});
+});

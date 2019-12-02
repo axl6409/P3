@@ -1,14 +1,14 @@
 /* Caroussel */
 
 .container {
-    padding-right: 50px;
+    padding-right: 3%;
     overflow-x: hidden;
-    padding-left: 50px;
-    position: relative;
-    z-index: 99;
-    margin-top: -20%;
-    margin-bottom: 15%;
+    padding-left: 3%;
+    width: 94%;
+    top: 30%;
+    position: absolute;
 }
+
 
 .container h2 {
     color: white;
@@ -45,7 +45,7 @@
 	top: 50%;
 	margin-top: -20px;
 	right:  0px;
-	box-shadow:  0 15px 35px #32323221a, 0 5px 15px #0000001a;
+	box-shadow: 0px 8px 20px 1px black;
 	cursor:  pointer;
 	transition: transform 0.3s, opacity 0.3s;
 	border-radius: 50px;
@@ -76,7 +76,24 @@
 	bottom: 0;
 	margin-top: -20px;
 	right:  0px;
-	box-shadow:  0 15px 35px #32323221a, 0 5px 15px #0000001a;
+	box-shadow: 0px 8px 20px 1px black;
+	cursor:  pointer;
+	border-radius: 50px;
+	transition: transform 0.3s, opacity 0.3s;
+}
+
+.carousel__pause {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	background: #FFF url(img/pause.svg) center center no-repeat;
+	right: auto;
+	background-size: 20px 20px;
+	top: 10%;
+	bottom: 0;
+	margin-top: -20px;
+	right:  0px;
+	box-shadow: 0px 8px 20px 1px black;
 	cursor:  pointer;
 	border-radius: 50px;
 	transition: transform 0.3s, opacity 0.3s;
@@ -84,7 +101,8 @@
 
 .item {
 	margin: 40px 10px;
-	height: 400px;
+	height: 550px;
+	border-radius: 5%;
 	background-color: #fff;
 	box-shadow: 0 15px 35px #3232321a,0 5px 15px #0000001a;
 	transition: transform 0.3s;
@@ -95,35 +113,35 @@
 }
 
 .item__image {
-	display: block;
 	width: 100%;
 	height: auto;
+	text-align: center;
 }
+
 .item__image img {
-	width: 100%;
+	width: 96%;
 }
 
 .item__body {
-	position: relative;
-	height: 100%
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	border-radius: 5%;
+	height: 100%;
+	box-shadow: 0px 20px 35px -19px #101010;
 }
 
 .item__title {
 	font-size: 24px;
-	margin-bottom: 5px;
+	margin-left: 30px;
 	font-weight: bold;
 	color: #232323;
-	position: absolute;
-	top: 25%;
-	left: 15%;
 }
 
 .item__description {
 	color: #585858;
-	position: absolute;
-	bottom: 45%;
-	left: 15%;
-	width: 70%;
+	margin-left: 30px;
+	width: 88%;
 }
 
 

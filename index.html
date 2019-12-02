@@ -13,19 +13,32 @@
 	</head>
 
 	<body>
-		
-
-
 
 		<header id="header" class="header">
 			<div class="header_logo">
 				<img class="logo" src="img/cyclist.png" alt="icone du site Toulouse By Bike">
 			</div>
 			
+			<nav class="navigation">
+				<ul>
+					<li class="link_block">
+						<a class="nav_links anime_nav" href="#tutorial">
+							<i class="fas fa-info-circle"></i>
+							<p>Infos</p>
+						</a>
+					</li>
+					<li class="link_block">
+						<a class="nav_links animeNav" href="#informations">
+							<i class="fas fa-map-marked-alt"></i>
+							<p>Réservez</p>
+						</a>
+					</li>
+				</ul>
+			</nav>
 		</header>
 
 		<main id="main" class="main">
-
+			
 			<section id="welcome" class="welcome">
 				<div class="welcome_container">
 					<h1 class="font_titles">Bienvenue sur Toulouse By Bike !</h1>
@@ -35,134 +48,155 @@
 
 			
 			
-				
-			<div class="container"> <!-- élément ciblé js pour le carousel --> 
-				
-				<h2 class="">Suivez les étapes ci-dessous pour voir les étapes pour la réservation</h2>
+			<section id="tutorial" class="target">
 
-				<div id="carousel">
+				<div class="container"> <!-- élément ciblé js pour le carousel --> 
 					
-					<div class="item">
+					<h2 class="">Suivez les étapes ci-dessous pour voir les étapes pour la réservation</h2>
 
-						<div class="item__body">
-							<h3 class="item__title">Étape 1</h3>
-							<p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus quae, dolores velit optio unde vero labore aperiam minus commodi fuga veniam consectetur distinctio non ut nisi dolorem minima hic magni.</p>
-						</div>
+					<div id="carousel">
 						
-					</div>
+						<div class="item">
 
-					<div class="item">
-
-						<div class="item__body">
-							<h3 class="item__title">Étape 2</h3>
-							<p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus quae, dolores velit optio unde vero labore aperiam minus commodi fuga veniam consectetur distinctio non ut nisi dolorem minima hic magni.</p>
+							<div class="item__body">
+								<h3 class="item__title">Étape 1</h3>
+								<p class="item__description">Vous pouvez réserver un vélo depuis une de nos station sur Toulouse. Pour cela cliquez sur le bouton réservez ou descendez la page jusqu'à la carte intéractive.</p>
+								<div class="item__image">
+									<img src="img/etape1.png" alt="">
+								</div>
+								
+							</div>
+							
 						</div>
-						
-					</div>
 
-					<div class="item">
+						<div class="item">
 
-						<div class="item__body">
-							<h3 class="item__title">Étape 3</h3>
-							<p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus quae, dolores velit optio unde vero labore aperiam minus commodi fuga veniam consectetur distinctio non ut nisi dolorem minima hic magni.</p>
+							<div class="item__body">
+								<h3 class="item__title">Étape 2</h3>
+								<p class="item__description">Cliquez sur une station pour voir les informations. Si l'icone de la station est verte, alors plusieurs vélos sont disponibles à la station. Si l'icone est orange, alors la station n'as plus beaucoup de vélos. Si l'icone est rouge, c'est que la station n'as plus de vélos de disponibles.</p>
+								<div class="item__image">
+									<img src="img/etape2.png" alt="">
+								</div>
+							</div>
+							
 						</div>
-						
-					</div>
 
-					<div class="item">
+						<div class="item">
 
-						<div class="item__body">
-							<h3 class="item__title">Étape 4</h3>
-							<p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus quae, dolores velit optio unde vero labore aperiam minus commodi fuga veniam consectetur distinctio non ut nisi dolorem minima hic magni.</p>
+							<div class="item__body">
+								<h3 class="item__title">Étape 3</h3>
+								<p class="item__description">Après avoir sélectionné votre station, vous verrez le nom de la station et son adresse, ainsi que le nombre de vélos disponibles et d'emplacements disponibles. Vous pouvez renseignez les champs du formulaire et cliquez sur le bouton "GO!" pour réservez.</p>
+								<div class="item__image">
+									<img src="img/etape3.png" alt="">
+								</div>
+							</div>
+							
 						</div>
-						
-					</div>
 
-					<div class="item">
+						<div class="item">
 
-						<div class="item__body">
-							<h3 class="item__title">Étape 5</h3>
-							<p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus quae, dolores velit optio unde vero labore aperiam minus commodi fuga veniam consectetur distinctio non ut nisi dolorem minima hic magni.</p>
+							<div class="item__body">
+								<h3 class="item__title">Étape 4</h3>
+								<p class="item__description">Vous devrez alors signer dans le cardre qui apparait juste en dessous de la carte. Puis cliquez sur valider.</p>
+								<div class="item__image">
+									<img src="img/etape4.png" alt="">
+								</div>
+							</div>
+							
 						</div>
-						
+
+						<div class="item">
+
+							<div class="item__body">
+								<h3 class="item__title">Étape 5</h3>
+								<p class="item__description">Et voila ! Votre vélo est réservé sur la station séléctionnée. Votre réservation est valide pour 20 minutes, et seras effacé à la fin du compte à rebours. Vous pouvez actualiser la page, et choisir une nouvelle station pour remplacer la précédente. Mais si la page est fermé la réservation seras annulée.</p>
+								<div class="item__image">
+									<img src="img/etape5.png" alt="">
+								</div>
+							</div>
+							
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div id="map_container" class="map_container">
-				<div id="map" class="map"></div>
+			</section>
 
-				<div id="form_container" class="form_container">
+			<section id="informations" class="target">
 
-					<button class="close_form_button"><i class="far fa-times-circle"></i></button>
-
-					<div id="before_form">
-						<p id="before_click">Cliquez sur la station de votre choix pour afficher les informations et réserver votre vélo !</p>
-						<ul>
-							<li id="station_verte"></li>
-							<li id="station_orange"></li>
-							<li id="station_rouge"></li>
-						</ul>
-					</div>
-
-					<div id="station_infos" class="station_infos">		
-						<p class="infos_adress">Adresse : </p>
-						<p class="infos_places">Nombres de places : </p>
-						<p class="infos_dispo">Nombres de vélos disponibles : </p>
-					</div>
-
-					<form method="post" id="form_bikes" class="reserv_form">
-
-						<fieldset>
-
-							<legend>Réservez un vélo de cette station</legend>
-							<label for="name">Votre nom : </label><input type="text" name="name" id="name" placeholder="Votre nom" required/><br/>
-							<label for="firstname">Votre prénom : </label><input type="text" name="firstname" id="firstname" placeholder="Votre prénom" required/><br/>
-							<input type="submit" name="submit" id="reservation" value="Réservez !">
-
-						</fieldset>
-
-					</form>
-
-					<p id="nobikes">Réservation impossible (aucun vélo de disponible dans cette station)</p>
-
-					<div id="canvas_container" class="canvas_container"> <!-- Div du Canvas -->
-
-		                <div id="canvas_message">
-		                    <p>Signez dans la case pour confirmer :</p>
-		                </div>
-
-		                <div id="canvas_div">
-		                    <canvas id="canvas_resa" width="200" height="200">Apposez votre signature (si vous voyez ce message, votre navigateur n'est pas à jour)</canvas>
-		                </div>
-
-		                <div id="canvas_confirm">
-		                    <button type="submit" id="submit_canvas">Validez !</button>1
-		                    <button type="reset" id="clear_canvas">Recommencez</button>
-		                </div>
-		            </div>
+				<div id="before_form" >
+					<h2></h2>
 				</div>
-
 				
-			</div>
+				<div id="map_container" class="map_container">
+					<div id="map" class="map"></div>
 
-			<div class="reserv_infos">
-				<p id="form_confirm" class="form_confirm">Vélo réservé à la station :
-					<span class="confirm_station" id="confirm_station">STATION</span>
-					</br> par :
-					<span class="confirm_name" id="confirm_name"> NAME</span>
+					<div id="form_container" class="form_container">
+
+						<div id="station_infos" class="station_infos">		
+							<p class="infos_adress">Adresse : </p>
+							<p class="infos_places">Nombres de places : </p>
+							<p class="infos_dispo">Nombres de vélos disponibles : </p>
+						</div>
+
+						<form method="post" id="form_bikes" class="reserv_form">
+
+							<fieldset>
+
+								<legend>Réservez un vélo de cette station</legend>
+
+								<label for="name" class="form_label">Votre nom : </label>
+								<input type="text" class="form_fields" name="name" id="name" placeholder="Votre nom" required/><br/>
+
+								<label for="firstname"  class="form_label">Votre prénom : </label>
+								<input type="text" class="form_fields" name="firstname" id="firstname" placeholder="Votre prénom" required/><br/>
+
+								<input type="submit" name="submit" class="form_submit" id="reservation" value="GO">
+
+							</fieldset>
+
+						</form>
+
+						<p id="nobikes">Réservation impossible (aucun vélo de disponible dans cette station)</p>
+
+						<div id="canvas_container" class="canvas_container"> <!-- Div du Canvas -->
+
+			                <div id="canvas_message">
+			                    <p>Signez dans la case pour confirmer :</p>
+			                </div>
+
+			                <div id="canvas_div">
+			                    <canvas id="canvas_resa" width="200" height="200">Apposez votre signature (si vous voyez ce message, votre navigateur n'est pas à jour)</canvas>
+			                </div>
+
+			                <div id="canvas_confirm">
+			                    <button type="submit" id="submit_canvas" class="canvas_submit">OK</button>
+			                    <button type="reset" id="clear_canvas" class="canvas_reset">X</button>
+			                </div>
+			            </div>
+					</div>				
+				</div>
+
+				<div id="form_confirm" class="form_confirm">Vélo réservé !
+					</br>
+					<i class="fas fa-map-marked-alt"></i>
+					<span class="confirm_station" id="confirm_station"></span>
+					</br> 
+					par :
+					<span class="confirm_name" id="confirm_name">NAME</span>
 					</br>
 					Temps restant :
 					<span class="confimr_timer" id="timer"></span>
-					Avant l'expiration se la session
-				</p>
-
+					Avant l'expiration de la session
+				</div>	
 				
-			</div>
+				<div class="reserv_exp">
+					<p id="form_exp">Réservation expirée</p>
+				</div>
+
+			</section>
 			
-			<div class="reserv_exp">
-				<p id="form_exp">Réservation expirée</p>
-			</div>
+
+			
 			
 					
 		</main>

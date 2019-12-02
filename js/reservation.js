@@ -38,17 +38,16 @@ class Reserv {
 			} else {
 				console.log("Une réservation est en cours ...")
 				this.stopTimer = sessionStorage.stopTimer
-				console.log(this.stopTimer)
 				$('#form_confirm').css('display', 'block')
-				$('#confirm_station').html(`${sessionStorage.station}`)
+				$('#confirm_station').html(`<h2 class="station_name"> ${sessionStorage.station} </h2>`)
 				$('#confirm_name').html(`${localStorage.firstname} ${localStorage.name}`)
-
+				console.log(sessionStorage.station)
 				this.loopTimer()
 
-				this.documentHeight = $(document).height()
-				$('html, body').animate({
-					scrollTop: this.documentHeight
-				}, 1000)
+				// this.documentHeight = $(document).height()
+				// $('html, body').animate({
+				// 	scrollTop: this.documentHeight
+				// }, 1000)
 			}
 		})
 
@@ -62,10 +61,6 @@ class Reserv {
 			$('#confirm_name').html(`${this.formFirstName.val()} ${this.formName.val()}`)
 			clearInterval(this.intervalResa)
 			$('#timer').html("")
-			this.documentHeight = $(document).height()
-			$('html, body').animate({
-				scrollTop: $("#canvas_message").offset().top
-			}, 1000)
 		})
 
 		this.canvas.clear.click((e) => {
@@ -97,7 +92,7 @@ class Reserv {
 
 				$(window).on('beforeunload', (event) => {
 					event.preventDefault()
-					console.log("Do you really want to close the ")
+					alert("Do you really want to close the window")
 				})
 			}
 		})
@@ -110,10 +105,22 @@ class Reserv {
 			storage.setItem(x, x)
 			storage.removeItem(x)
 			return true
+			console.log(storage)
 		}
 		catch(e) {
-			return false
-		}
+	        return e instanceof DOMException && (
+	            // everything except Firefox
+	            e.code === 22 ||
+	            // Firefox
+	            e.code === 1014 ||
+	            // test name field too, because code might not be present
+	            // everything except Firefox
+	            e.name === 'QuotaExceededError' ||
+	            // Firefox
+	            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+	            // acknowledge QuotaExceededError only if there's something already stored
+	            storage.length !== 0;
+	    }
 	}
 
 	loopTimer() {
@@ -137,7 +144,7 @@ class Reserv {
 		localStorage.name = this.formName.val()
 		localStorage.firstname = this.formFirstName.val()
 		sessionStorage.station = $('#confirm_station').text()
-
+		console.log(sessionStorage.station)
 		console.log(`Prenom et Nom : ${localStorage.getItem('firstname')} ${localStorage.getItem('name')} réservé à la station ${sessionStorage.getItem('station')}`)
 		
 		this.setStyles()

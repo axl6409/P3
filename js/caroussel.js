@@ -26,7 +26,7 @@ class Carousel {
 			// Propriétés par défault 
 			slidesToScroll: 1, 
 			slidesVisible: 1,
-			loop: true,
+			loop: false,
 		    navigation: true,
 		    infinite: true
 		}, options)
@@ -104,9 +104,12 @@ class Carousel {
 		nextButton.addEventListener('click', this.next.bind(this)) // Ajoute un evenement sur le bouton, au click et effectue la methode next
 		prevButton.addEventListener('click', this.prev.bind(this)) // Ajoute un evenement sur le bouton, au click et effectue la methode prev
 		playButton.addEventListener('click', this.play.bind(this)) // Ajoute un evenement sur le bouton, au click et effectue la methode play
+		playButton.id = 'playButton'
 		if (this.options.loop === true) { 
 			return
 		}
+
+
 		// Appel de la methode onMove, en parametre
 		this.onMove(index => {
 
@@ -143,12 +146,17 @@ class Carousel {
 	}
 
 	play () {
+			
+		this.playButton = $('#playButton')
 
 		this.isPlayed = this.options.loop
 
 		this.isPlayed ? this.options.loop = false : this.options.loop = true
 
 		if (this.options.loop === true) {
+
+			this.playButton.removeClass('carousel__play')
+			this.playButton.addClass('carousel__pause')
 				
 			this.interval = window.setInterval(() => {
 				
@@ -156,11 +164,14 @@ class Carousel {
 
 				this.gotoItem(this.playSlide + 1, true)
 				this.playSlide++
-				console.log(this.playSlide)
 				
 			}, 2000)
 			
 		} else if (this.options.loop === false) {
+			
+			this.playButton.removeClass('carousel__pause')
+			this.playButton.addClass('carousel__play')
+			
 			clearInterval(this.interval)
 		}
 				

@@ -116,7 +116,7 @@ class MapClass {
             }
 
             let newMarker = L.marker([newStation.position.lat, newStation.position.lng], {icon: myIcon}, {opacity: 1}, {bubblingMouseEvents: true}, {interactive: true});
-            newMarker.bindPopup(newStation.name.replace(this.regex, 'STATION'));
+            newMarker.bindPopup(newStation.name.replace(this.regex, '')); // Affiche le nom de la station sur le marqueur, sur la carte
             newMarker.addTo(this.map).on('click', (e) => {
                 this.newMarkerClic(newStation);
             });
@@ -124,32 +124,22 @@ class MapClass {
     };
 
     newMarkerClic(newStation) {
-        $('#before_form').remove()
-        $('#form_container').prepend('<p id="before_form"></p>')
-        $('#before_form').append(newStation.name.replace(this.regex, 'STATION'))
+        $('#before_form h2').html('')
+        $('#before_form h2').append(newStation.name.replace(this.regex, '     '))
         $('#form_container').css('display', 'block') // Affiche le bloc d'infos de la station
         $('#station_infos p').html('') // Efface les dernières valeurs d'information
         $('#form_container form').css('display', 'none') // Efface le formulaire
         $('#nobikes').css('display', 'none') // Efface le message en cas de réservation impossible
-
         $('#station_infos p:first').append(`Adresse : ${newStation.address.toLowerCase()}`) // Remplissage de l'info : Adresse
         $('#station_infos p:eq(1)').append(`Nombre de places : ${newStation.bike_stands}`) // Remplissage de l'info : Nombre de places
         $('#station_infos p:last').append(`Nombre de vélos disponibles : ${newStation.available_bikes}`) // Remplissage de l'info : Nombres de vélos disponibles
-
         $('#canvas_container').css('display', 'none') // Supprime le canvas s'il est ouvert
         $('#form_confirm').css('display', 'none') // Efface le message de confirmation 
         $('#form_exp').css('display', 'none') // Efface le message d'expiration de réservation 
-
         if(newStation.available_bikes > 0) { // S'il y a des vélos disponibles alors
             $('#form_container form').css('display', 'block') // Affiche le formulaire 
-            $('html, body').animate({ // pour les mobiles scrollDown jusqu'au formulaire
-                scrollTop: $('#before_form').offset().top
-            }, 1000)
         } else { // S'il n'y a pas de vélos disponibles :
             $('#nobikes').css('display', 'block') // Message : réservation impossible
-            $('html, body').animate({ // pour les mobiles scrollDown jusqu'au formulaire
-                scrollTop: $('#before_form').offset().top
-            }, 1000)
         }
     }
 
