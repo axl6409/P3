@@ -21,6 +21,10 @@
 	padding: 10px;
 }
 
+// ****************************
+// START * Class JS intégration
+// ****************************
+
 .carousel__container {
 	transition: transform 0.3s;
 	transform: translate3d(0,0,0);
@@ -98,6 +102,10 @@
 	border-radius: 50px;
 	transition: transform 0.3s, opacity 0.3s;
 }
+
+// ****************************
+// END * Class JS Intégration
+// ****************************
 
 .item {
 	margin: 40px 10px;

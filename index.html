@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="description" content="Réservez votre vélo sur Toulouse avec Toulouse By Bike">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Toulouse By Bike</title>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
@@ -13,12 +15,14 @@
 	</head>
 
 	<body>
-
+		
+		<!-- HEADER -->
 		<header id="header" class="header">
 			<div class="header_logo">
 				<img class="logo" src="img/cyclist.png" alt="icone du site Toulouse By Bike">
 			</div>
 			
+			<!-- NAVIGATION -->
 			<nav class="navigation">
 				<ul>
 					<li class="link_block">
@@ -36,9 +40,11 @@
 				</ul>
 			</nav>
 		</header>
-
+		
+		<!-- MAIN SITE SECTIONS -->
 		<main id="main" class="main">
 			
+			<!-- SECTION : BIENVENUE -->
 			<section id="welcome" class="welcome">
 				<div class="welcome_container">
 					<h1 class="font_titles">Bienvenue sur Toulouse By Bike !</h1>
@@ -47,13 +53,14 @@
 			</section>
 
 			
-			
+			<!-- SECTION : INSTRUCTIONS -->
 			<section id="tutorial" class="target">
 
 				<div class="container"> <!-- élément ciblé js pour le carousel --> 
 					
 					<h2 class="">Suivez les étapes ci-dessous pour voir les étapes pour la réservation</h2>
-
+					
+					<!-- CONTAINER : CAROUSEL -->
 					<div id="carousel">
 						
 						<div class="item">
@@ -120,24 +127,32 @@
 				</div>
 
 			</section>
-
+			
+			<!-- SECTION : RESERVATION -->
 			<section id="informations" class="target">
-
+				
+				<!-- TITRE DE LA STATION (intégration JS) -->
 				<div id="before_form" >
 					<h2></h2>
 				</div>
 				
+				<!-- CONTAINER : MAP -->
 				<div id="map_container" class="map_container">
 					<div id="map" class="map"></div>
+					
 
+					<!-- CONTAINER : FORMULAIRE DE RESERVATION -->
 					<div id="form_container" class="form_container">
-
+						
+						
+						<!-- INFORMATIONS SUR LA STATION SELECTIONNÉE -->
 						<div id="station_infos" class="station_infos">		
 							<p class="infos_adress">Adresse : </p>
 							<p class="infos_places">Nombres de places : </p>
 							<p class="infos_dispo">Nombres de vélos disponibles : </p>
 						</div>
-
+						
+						<!-- FORMULAIRE DE RESERVATION -->
 						<form method="post" id="form_bikes" class="reserv_form">
 
 							<fieldset>
@@ -155,9 +170,10 @@
 							</fieldset>
 
 						</form>
-
+						
 						<p id="nobikes">Réservation impossible (aucun vélo de disponible dans cette station)</p>
-
+						
+						<!-- CONTAINER : CANVAS -->
 						<div id="canvas_container" class="canvas_container"> <!-- Div du Canvas -->
 
 			                <div id="canvas_message">
@@ -175,7 +191,8 @@
 			            </div>
 					</div>				
 				</div>
-
+				
+				<!-- CONTAINER : RÉSERVATION INFOS -->
 				<div id="form_confirm" class="form_confirm">Vélo réservé !
 					</br>
 					<i class="fas fa-map-marked-alt"></i>
@@ -193,14 +210,11 @@
 					<p id="form_exp">Réservation expirée</p>
 				</div>
 
-			</section>
-			
-
-			
-			
+			</section>	
 					
 		</main>
 
+		<!-- FOOTER -->
 		<footer id="footer" class="footer">
 			<div class="footer_logo">
 				<img class="logo" src="img/cyclist.png" alt="icone du site Toulouse By Bike">

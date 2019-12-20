@@ -1,14 +1,4 @@
-.form_container {
-	position: absolute;
-	top: 0;
-	right: 0;
-	z-index: 50;
-	height: 100%;
-	width: 40%;
-	background-color: rgba(0,0,0,0.6);
-	display: none;
-    color: white
-}
+// Formulaire
 
 
 #before_form {
@@ -21,12 +11,16 @@
     color: white;
 }
 
-
-#form_title {
-    width: 100%;
-    font-size: 40px;
-    letter-spacing: 2px;
-    text-align: center;
+.form_container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 50;
+	height: 100%;
+	width: 40%;
+	background-color: rgba(0,0,0,0.6);
+	display: none;
+    color: white
 }
 
 .station_infos p {

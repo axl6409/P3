@@ -4,13 +4,16 @@ class MapClass {
 
 	constructor(container, mapId, lat, lng, zoom, ajaxURL) {
 
-		this.container = $(container)
-		this.mapID = mapId
-		this.latView = lat
-		this.lngView = lng
-		this.zoom = zoom
-        this.ajaxURL = ajaxURL;
-		this.map = L.map(mapId).setView([this.latView, this.lngView], this.zoom) // Initialisation de la map
+        // Contructor Options
+		this.container = $(container)     // Container principal de la carte
+		this.mapID = mapId                // Id de la carte
+		this.latView = lat                // Latitude
+		this.lngView = lng                // Longitude
+		this.zoom = zoom                  // Règlage du Zoom sur la carte 
+        this.ajaxURL = ajaxURL;           // URL api JCDecaux
+
+        // Map Init Settings
+		this.map = L.map(mapId).setView([this.latView, this.lngView], this.zoom) // Initialisation de la map avec : Latitude / Longitude et Zoom
 		this.tilelayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYXhsNjQwOSIsImEiOiJjanhlcW9sZDYwcG5kNDFsNzI1b3hzZGIwIn0.Pj1oOeEmXLyQ1-Scsi6Kow', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>', // création du design de la map
             maxZoom: 18,
@@ -21,18 +24,18 @@ class MapClass {
 		this.stationModel = { // Création de l'objet station
 
 			init: function (name, address, positionlat, positionlng, banking, status, bikestands, availableBS, availableB, lastupdate) {
-				this.name = name
-                this.address = address
+				this.name = name            // Nom de la station
+                this.address = address      // Adresse de la station
                 this.position = {
-                    lat: positionlat,
-                    lng: positionlng
+                    lat: positionlat,       // Latitude de la station
+                    lng: positionlng        // Longitude de la station
                 };
-                this.banking = banking 
-                this.status = status
-                this.bike_stands = bikestands
-                this.available_bike_stands = availableBS
-                this.available_bikes = availableB
-                this.last_update = lastupdate
+                this.banking = banking      // indique la présence d'un terminal de payement
+                this.status = status        // indique l'état de la station
+                this.bike_stands = bikestands   // nombres de stands pour vélo
+                this.available_bike_stands = availableBS    // nombre de stand pour vélo disponibles
+                this.available_bikes = availableB   // nombres de vélos disponibles
+                this.last_update = lastupdate       // dernière mise à jour
 			}
 		}
 
@@ -79,17 +82,21 @@ class MapClass {
 
     launchAjax() {
             $.ajax({
-                url: this.ajaxURL,
-                type: 'GET',
-                dataType: 'json',
+                url: this.ajaxURL, // Ressource ciblée
+                type: 'GET',       // Type de la requete HTTP
+                dataType: 'json',  // Type de données à recevoir : ici JSON
                 data: {param1: 'value1'},
             })
+
+            // Requete AJAX effectuée avec Succes
             .done(function() {
                 console.log("success");
             })
+            // Requete AJAX à échouée
             .fail(function() {
                 console.log("error");
             })
+            // Requete Ajax est completée
             .always( (response) => {
                 console.log("complete");
                 this.ajaxOK(response);
@@ -98,9 +105,22 @@ class MapClass {
 
     ajaxOK(response) { // fonction qui se déclenche quand  l'appel AJAX s'est terminé avec succès
         let stations = response; // le tableau JS obtenu (jQuery traduit en JS)
+
         for (let station of stations) { // création d'une classe pour chaque station
+
+            // Création d'un modele de station
             let newStation = Object.create(this.stationModel);
-            newStation.init(station.name, station.address, station.position.lat, station.position.lng, station.banking, station.status, station.bike_stands, station.available_bike_stands, station.available_bikes, station.last_update);
+            newStation.init(
+                station.name, 
+                station.address, 
+                station.position.lat, 
+                station.position.lng, 
+                station.banking, 
+                station.status, 
+                station.bike_stands, 
+                station.available_bike_stands, 
+                station.available_bikes, 
+                station.last_update);
 
             let myIcon = this.greenIcon; // au début de la boucle, l'icône est vert
 
@@ -115,17 +135,24 @@ class MapClass {
                 }
             }
 
-            let newMarker = L.marker([newStation.position.lat, newStation.position.lng], {icon: myIcon}, {opacity: 1}, {bubblingMouseEvents: true}, {interactive: true});
+            // Creation d'un nouveau marqueur
+            let newMarker = L.marker(
+                             [newStation.position.lat, newStation.position.lng],
+                             {icon: myIcon}, 
+                             {opacity: 1}, 
+                             {bubblingMouseEvents: true}, 
+                             {interactive: true});
             newMarker.bindPopup(newStation.name.replace(this.regex, '')); // Affiche le nom de la station sur le marqueur, sur la carte
             newMarker.addTo(this.map).on('click', (e) => {
-                this.newMarkerClic(newStation);
+                this.newMarkerClic(newStation); // Appel de la methode newMarkerClick, au click sur une icone de station
             });
         };
     };
 
+    
     newMarkerClic(newStation) {
-        $('#before_form h2').html('')
-        $('#before_form h2').append(newStation.name.replace(this.regex, '     '))
+        $('#before_form h2').html('') 
+        $('#before_form h2').append(newStation.name.replace(this.regex, '     ')) // ajoute des espaces, à la place des tirets et chiffres du nom de la station
         $('#form_container').css('display', 'block') // Affiche le bloc d'infos de la station
         $('#station_infos p').html('') // Efface les dernières valeurs d'information
         $('#form_container form').css('display', 'none') // Efface le formulaire
@@ -143,5 +170,4 @@ class MapClass {
         }
     }
 
-    
 }; // fin de la classe

@@ -15,6 +15,7 @@ $(document).ready(function() {
 })
 
 
+// Smooth scroll vers les ancres de la page 
 
 $(document).ready(function() {
 	$('.nav_links').on('click', function() { // Au clic sur un élément

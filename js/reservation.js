@@ -2,11 +2,12 @@
 
 class Reserv {
 
+	// Constructeur
 	constructor(form, timer, canvas) {
 
-		this.form = $(form)
-		this.timer = timer
-		this.canvas = canvas
+		this.form = $(form) 		// Container principal du formulaire
+		this.timer = timer 			// Initialisation du timer
+		this.canvas = canvas 		// Class Canvas
 		this.beforeForm = $('#before_form')
 		this.formName = this.form.find('#name')
 		this.formFirstName = this.form.find('#firstname')
@@ -19,8 +20,10 @@ class Reserv {
 
 	initSettings() {
 
+		// Quand la page est prête
 		$(document).ready(($) => {
 
+			// Verification disponibilité de LocalStorage
 			if (this.storageAvailable('localStorage')) {
 				console.log("LocalStorage est disponible")
 			} else {
@@ -43,14 +46,10 @@ class Reserv {
 				$('#confirm_name').html(`${localStorage.firstname} ${localStorage.name}`)
 				console.log(sessionStorage.station)
 				this.loopTimer()
-
-				// this.documentHeight = $(document).height()
-				// $('html, body').animate({
-				// 	scrollTop: this.documentHeight
-				// }, 1000)
 			}
 		})
 
+		// Evenement à la soumission du formulaire
 		this.form.submit((event) => {
 			event.preventDefault()
 			console.log("Formulaire Validé")
@@ -84,11 +83,6 @@ class Reserv {
 				this.loopTimer()
 
 				$('#form_confirm').css('display', 'block')
-				this.documentHeight = $(document).height()
-
-				$('html, body').animate({
-					scrollTop: this.documentHeight
-				}, 1000)
 
 				$(window).on('beforeunload', (event) => {
 					event.preventDefault()
@@ -99,13 +93,13 @@ class Reserv {
 	}
 
 	storageAvailable(type) {
+		var storage
 		try {
-			let storage = window[type]
+			storage = window[type]
 				x = '__storage_test__'
 			storage.setItem(x, x)
 			storage.removeItem(x)
 			return true
-			console.log(storage)
 		}
 		catch(e) {
 	        return e instanceof DOMException && (
@@ -117,9 +111,9 @@ class Reserv {
 	            // everything except Firefox
 	            e.name === 'QuotaExceededError' ||
 	            // Firefox
-	            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+	            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') && // Exception déclanché si le quota de stokage est atteint
 	            // acknowledge QuotaExceededError only if there's something already stored
-	            storage.length !== 0;
+	            (storage && storage.length !== 0)
 	    }
 	}
 
