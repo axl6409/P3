@@ -6,3 +6,7 @@
 @import "partiels/map.scss";
 @import "partiels/form.scss";
 @import "partiels/main.scss";
+
+@media screen and (max-width: $S) {
+	@import "partiels/responsive.scss";
+}

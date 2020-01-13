@@ -186,10 +186,11 @@
   position: absolute;
 }
 
-.container h2 {
+.container_title {
   color: white;
   font-size: 30px;
   letter-spacing: 4px;
+  text-shadow: -2px 4px 4px black;
 }
 
 .carousel {
@@ -432,7 +433,7 @@
 
 .canvas_container {
   position: absolute;
-  width: 50%;
+  width: 46%;
   bottom: -80%;
   right: 90%;
   text-align: center;
@@ -447,6 +448,8 @@
   background-color: #dadada;
   margin-top: 20px;
   margin-bottom: 20px;
+  width: 250px;
+  height: 250px;
 }
 
 #canvas_confirm {
@@ -702,6 +705,75 @@ p, span, div {
 .footer_logo {
   text-align: center;
   height: auto;
+}
+
+@media screen and (max-width: 480px) and (max-width: 480px) {
+  .logo {
+    width: 10%;
+  }
+
+  .navigation {
+    width: 100%;
+    right: 0;
+    bottom: 0;
+  }
+
+  .navigation ul {
+    justify-content: space-between;
+  }
+
+  .link_block {
+    width: 22%;
+    height: 60px;
+  }
+
+  .nav_links {
+    font-size: 40px;
+  }
+
+  .nav_links p {
+    font-size: 15px;
+    margin-top: 5%;
+  }
+
+  #tutorial {
+    margin-bottom: 40%;
+  }
+
+  .container {
+    top: 10%;
+  }
+
+  .map_container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  #informations {
+    margin-bottom: 40%;
+    height: 100%;
+  }
+
+  #before_form {
+    font-size: 25px;
+  }
+
+  .form_container {
+    position: inherit;
+    width: 100%;
+  }
+
+  .canvas_container {
+    width: 80%;
+    right: 5%;
+    bottom: 7%;
+  }
+
+  .form_confirm {
+    bottom: 40%;
+    width: 40%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

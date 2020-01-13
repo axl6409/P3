@@ -138,20 +138,21 @@ class Carousel {
 	 */
 
 	next () {
-		this.gotoItem(this.currentItem + this.slidesToScroll) // Appel de la methode gotoItem
+
+		this.gotoItem(this.currentItem + this.slidesToScroll) // Appel de la methode gotoItem et parametres : index de l'item + nombres de slide a defiler
 	}
 
 	prev () {
-		this.gotoItem(this.currentItem - this.slidesToScroll) 
+		this.gotoItem(this.currentItem - this.slidesToScroll) // Appel de la methode gotoItem et parametres : index de l'item - nombres de slide a defiler
 	}
 
 	play () {
 			
-		this.playButton = $('#playButton')
+		this.playButton = $('#playButton') // Init Bouton play
 
-		this.isPlayed = this.options.loop
+		this.isPlayed = this.options.loop 
 
-		this.isPlayed ? this.options.loop = false : this.options.loop = true
+		this.isPlayed ? this.options.loop = false : this.options.loop = true 
 
 		if (this.options.loop === true) {
 
@@ -165,7 +166,7 @@ class Carousel {
 				this.gotoItem(this.playSlide + 1, true)
 				this.playSlide++
 				
-			}, 2000)
+			}, 1000)
 			
 		} else if (this.options.loop === false) {
 			

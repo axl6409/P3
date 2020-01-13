@@ -83,6 +83,7 @@ class Reserv {
 				this.loopTimer()
 
 				$('#form_confirm').css('display', 'block')
+				$('#canvas_container').css('display', 'none')
 
 				$(window).on('beforeunload', (event) => {
 					event.preventDefault()
