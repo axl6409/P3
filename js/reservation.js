@@ -11,6 +11,7 @@ class Reserv {
 		this.beforeForm = $('#before_form')
 		this.formName = this.form.find('#name')
 		this.formFirstName = this.form.find('#firstname')
+		this.formConfirm = $('#form_confirm')
 		this.intervalResa = null
 		this.stopTimer = null
 		this.regexResa = /......../
@@ -62,6 +63,7 @@ class Reserv {
 			$('#timer').html("")
 		})
 
+		// Evenement au nettoyage du canvas
 		this.canvas.clear.click((e) => {
 			console.log("appuyé")
 			clearInterval(this.intervalResa)
@@ -70,6 +72,7 @@ class Reserv {
 			this.canvas.canvasFilled = false
 		})
 
+		// Evenement à la soumission du canvas
 		this.canvas.submit.click((e) => {
 			e.preventDefault()
 			if (!this.canvas.canvasFilled) {
@@ -91,6 +94,10 @@ class Reserv {
 				})
 			}
 		})
+
+		
+
+
 	}
 
 	storageAvailable(type) {
@@ -146,13 +153,14 @@ class Reserv {
 	}
 
 	setStyles() {
-		let currentName = localStorage.name
-		let currentFirstName = localStorage.firstname
-		let currentStation = sessionStorage.station
+		let currentName = localStorage.name // Le nom de la personne
+		let currentFirstName = localStorage.firstname // Le prénom de la personne
+		let currentStation = sessionStorage.station // La station réservé
 
-		this.formName.val(currentName)
-		this.formFirstName.val(currentFirstName)
-		$('#confirm_station').html(currentStation)
+		this.formName.val(currentName) // Le champ 'nom' du formulaire
+		this.formFirstName.val(currentFirstName) // Le champ 'prénom' du formulaire
+		$('#confirm_station').html(currentStation) // Le champ ou est affiché le nom de la station
+
 		console.log(`${currentFirstName} ${currentName}`)
 	}
 }

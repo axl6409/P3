@@ -50,6 +50,8 @@ class Carousel {
 
 			return item
 		})
+
+		// Slide infini, si l'option est active
 		if (this.options.infinite) {
 			this.offset = this.options.slidesVisible + this.options.slidesToScroll // Récupere les items hors champs
 			if (this.offset > children.length) {
@@ -66,9 +68,12 @@ class Carousel {
 
 		this.items.forEach(item => this.container.appendChild(item)) // On rajoute les "items" dans le container
 		this.setStyle()
+
+		// Creation de la navigation, si l'option est active
 	    if (this.options.navigation) {
 	      this.createNavigation()
 	    }
+
 		// Evenements
 		this.moveCallbacks.forEach(cb => cb(this.currentItem))
 		this.onWindowResize() // Appel de la methode pour redimensionement sur mobile
@@ -146,6 +151,13 @@ class Carousel {
 		this.gotoItem(this.currentItem - this.slidesToScroll) // Appel de la methode gotoItem et parametres : index de l'item - nombres de slide a defiler
 	}
 
+
+	/*
+	 *
+	 * Methode pour le bouton play
+	 *
+	 */
+
 	play () {
 			
 		this.playButton = $('#playButton') // Init Bouton play
@@ -166,7 +178,7 @@ class Carousel {
 				this.gotoItem(this.playSlide + 1, true)
 				this.playSlide++
 				
-			}, 1000)
+			}, 2000)
 			
 		} else if (this.options.loop === false) {
 			

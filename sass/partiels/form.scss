@@ -178,6 +178,21 @@
     background-color: white;
 }
 
+.form_confirm_button {
+    width: 10%;
+    height: 20px;
+    margin-left: 45%;
+    margin-bottom: 5%;
+}
+
+.form_confirm_button div {
+    background-color: black;
+    height: 3px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+
 .confirm_name {
     text-transform: uppercase;
 }

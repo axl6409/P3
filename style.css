@@ -196,6 +196,7 @@
 .carousel {
   position: relative;
   padding: 10px;
+  outline: 0;
 }
 
 .carousel__container {
@@ -515,6 +516,20 @@
   background-color: white;
 }
 
+.form_confirm_button {
+  width: 10%;
+  height: 20px;
+  margin-left: 45%;
+  margin-bottom: 5%;
+}
+
+.form_confirm_button div {
+  background-color: black;
+  height: 3px;
+  width: 100%;
+  margin-top: 5px;
+}
+
 .confirm_name {
   text-transform: uppercase;
 }
@@ -707,7 +722,7 @@ p, span, div {
   height: auto;
 }
 
-@media screen and (max-width: 480px) and (max-width: 480px) {
+@media screen and (max-width: 480px) {
   .logo {
     width: 10%;
   }
@@ -773,6 +788,17 @@ p, span, div {
   .form_confirm {
     bottom: 40%;
     width: 40%;
+  }
+}
+@media screen and (max-width: 860px) {
+  .container {
+    top: 5%;
+  }
+
+  .canvas_container {
+    width: 90%;
+    bottom: 12%;
+    right: 65%;
   }
 }
 

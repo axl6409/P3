@@ -8,5 +8,9 @@
 @import "partiels/main.scss";
 
 @media screen and (max-width: $S) {
-	@import "partiels/responsive.scss";
+	@import "partiels/responsive/small.scss";
+}
+
+@media screen and (max-width: $M) {
+	@import "partiels/responsive/medium.scss";
 }

@@ -76,16 +76,19 @@ class CanvasClass {
 			this.canvas.on('touchmove', this.draw)
 		})
 
+		// Touche
 		this.canvas.on('touchend', (e) => {
 			e.preventDefault()
 			this.canvas.off('touchmove', this.draw)
 		})
 
+		// Lache
 		this.canvas.on('touchleave', (e) => {
 			e.preventDefault()
 			this.canvas.off('touchmove', this.draw)
 		})
 
+		// Bouge
 		this.canvas.on('touchmove', (e) => {
 			e.preventDefault()
 			this.x2 = this.x
