@@ -1,4 +1,8 @@
-/* Caroussel */
+// *********
+// Caroussel
+// *********
+
+// Container principal
 
 .container {
     padding-right: 3%;
@@ -11,11 +15,11 @@
 
 
 .container_title {
-    color: white;
+    color: $white;
     font-size: 30px;
     text-align: center;
     letter-spacing: 4px;
-    text-shadow: -2px 4px 4px black;
+    text-shadow: -2px 4px 4px $black;
 }
 
 .carousel {
@@ -43,16 +47,17 @@
 	float: left;
 }
 
+// Elements de navigation
 .carousel__next, .carousel__prev {
 	position: absolute;
 	width: 40px;
 	height: 40px;
-	background: #FFF url(img/next.svg) center center no-repeat;
+	background: $white url(img/next.svg) center center no-repeat;
 	background-size: 20px 20px;
 	top: 50%;
 	margin-top: -20px;
 	right:  0px;
-	box-shadow: 0px 8px 20px 1px black;
+	box-shadow: 0px 8px 20px 1px $black;
 	cursor:  pointer;
 	transition: transform 0.3s, opacity 0.3s;
 	border-radius: 50px;
@@ -72,18 +77,19 @@
 	left:  -20px;
 }
 
+// Elements Play & Pause
 .carousel__play {
 	position: absolute;
 	width: 40px;
 	height: 40px;
-	background: #FFF url(img/play.svg) center center no-repeat;
+	background: $white url(img/play.svg) center center no-repeat;
 	right: auto;
 	background-size: 20px 20px;
 	top: 10%;
 	bottom: 0;
 	margin-top: -20px;
 	right:  0px;
-	box-shadow: 0px 8px 20px 1px black;
+	box-shadow: 0px 8px 20px 1px $black;
 	cursor:  pointer;
 	border-radius: 50px;
 	transition: transform 0.3s, opacity 0.3s;
@@ -93,14 +99,14 @@
 	position: absolute;
 	width: 40px;
 	height: 40px;
-	background: #FFF url(img/pause.svg) center center no-repeat;
+	background: $white url(img/pause.svg) center center no-repeat;
 	right: auto;
 	background-size: 20px 20px;
 	top: 10%;
 	bottom: 0;
 	margin-top: -20px;
 	right:  0px;
-	box-shadow: 0px 8px 20px 1px black;
+	box-shadow: 0px 8px 20px 1px $black;
 	cursor:  pointer;
 	border-radius: 50px;
 	transition: transform 0.3s, opacity 0.3s;
@@ -110,17 +116,41 @@
 // END * Class JS Intégration
 // ****************************
 
+// Les items du caroussel
+
 .item {
 	margin: 40px 10px;
 	height: 550px;
 	border-radius: 5%;
-	background-color: #fff;
-	box-shadow: 0 15px 35px #3232321a,0 5px 15px #0000001a;
+	background-color: $white;
+	box-shadow: 0 15px 35px $grey1,0 5px 15px $grey5;
 	transition: transform 0.3s;
 	transform: translate3d(0, -1px, 0);
 }
 .item:hover {
 	transform: translate3d(0, -10px, 0);
+}
+
+.item__body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	border-radius: 5%;
+	height: 100%;
+	box-shadow: 0px 20px 35px -19px $grey2;
+}
+
+.item__title {
+	font-size: 24px;
+	margin-left: 30px;
+	font-weight: bold;
+	color: $grey4;
+}
+
+.item__description {
+	color: $grey3;
+	margin-left: 30px;
+	width: 88%;
 }
 
 .item__image {
@@ -132,27 +162,3 @@
 .item__image img {
 	width: 96%;
 }
-
-.item__body {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	border-radius: 5%;
-	height: 100%;
-	box-shadow: 0px 20px 35px -19px #101010;
-}
-
-.item__title {
-	font-size: 24px;
-	margin-left: 30px;
-	font-weight: bold;
-	color: #232323;
-}
-
-.item__description {
-	color: #585858;
-	margin-left: 30px;
-	width: 88%;
-}
-
-

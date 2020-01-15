@@ -70,18 +70,21 @@ class Reserv {
 		// Evenement à la soumission du canvas
 		this.canvas.submit.click((e) => {
 			e.preventDefault()
-			if (!this.canvas.canvasFilled) {
+			if (!this.canvas.canvasFilled) { // Si le canvas n'est pas remplis
 				alert("Il manque votre signature")
-			} else {
-				clearInterval(this.intervalResa)
+			} else { // Le canvas est remplis
+
+				clearInterval(this.intervalResa) // Nettoyage du timer
+
 				this.beforeForm = $('#before_form')
 				$('#confirm_station').html(this.beforeForm.text().replace(this.regexResa, ''))
 				$('#confirm_name').html(`${this.formFirstName.val()} ${this.formName.val()}`)
 				this.stopTimer = new Date().getTime() + this.timer
+				
 				sessionStorage.stopTimer = this.stopTimer
 				console.log(this.stopTimer)
 
-				this.populateStorage()
+				this.populateStorage() 
 				this.loopTimer()
 
 				$('#form_confirm').css('display', 'block')
@@ -93,11 +96,6 @@ class Reserv {
 				})
 			}
 		})
-
-
-
-		
-
 
 	}
 
@@ -129,24 +127,24 @@ class Reserv {
 	loopTimer() {
 		this.intervalResa = setInterval( () => {
 			let startTimer = new Date().getTime()
-			let distance = this.stopTimer - startTimer
-			let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-			let seconds = Math.floor((distance % (1000 * 60)) / 1000)
-			$('#timer').html(`${minutes}m ${seconds}s`)
+			let distance = this.stopTimer - startTimer // Difference entre la date et heure actuelle et celle de getTime (1 janv 1970)
+			let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) // Nombre total de minutes (en millisecondes)
+			let seconds = Math.floor((distance % (1000 * 60)) / 1000) // Nombre total de secondes (en millisecondes)
+			$('#timer').html(`${minutes}m ${seconds}s`) // Retourne un timer avec les minutes et secondes
 
-			if (distance < 0) {
-				clearInterval(this.intervalResa)
-				$('#form_confirm').css('display', 'none')
-				$('#form_exp').css('display', 'block')
-				sessionStorage.clear()
+			if (distance < 0) {  // Si le timer arrive à zéro
+				clearInterval(this.intervalResa) // Nettoyage des informations de la réservation: Station, Timer, Nom Prenom
+				$('#form_confirm').css('display', 'none') // Enleve le formulaire de confirmation de la réservation
+				$('#form_exp').css('display', 'block') // Affiche la popup de réservation expirée
+				sessionStorage.clear() // Nettoyage du sessionStorage
 			}
 		}, 1000)
 	}
 
-	populateStorage() {
-		localStorage.name = this.formName.val()
-		localStorage.firstname = this.formFirstName.val()
-		sessionStorage.station = $('#confirm_station').text()
+	populateStorage() { // Stockage des informations du formulaire dans localStorage et sessionStorage
+		localStorage.name = this.formName.val() // Stockage du nom dans "Local"
+		localStorage.firstname = this.formFirstName.val() // Stockage du prenom dans "Local"
+		sessionStorage.station = $('#confirm_station').text() // Stockage du nom de la station dans "Session"
 		console.log(sessionStorage.station)
 		console.log(`Prenom et Nom : ${localStorage.getItem('firstname')} ${localStorage.getItem('name')} réservé à la station ${sessionStorage.getItem('station')}`)
 		
@@ -158,6 +156,7 @@ class Reserv {
 		let currentFirstName = localStorage.firstname // Le prénom de la personne
 		let currentStation = sessionStorage.station // La station réservé
 
+		// Les valeurs à insérer pour la prochaine saisie
 		this.formName.val(currentName) // Le champ 'nom' du formulaire
 		this.formFirstName.val(currentFirstName) // Le champ 'prénom' du formulaire
 		$('#confirm_station').html(currentStation) // Le champ ou est affiché le nom de la station

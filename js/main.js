@@ -40,7 +40,7 @@ $('#formConfirmButton').on('click', function() {
 
 })
 
-// Form Container Close & Canvas Close
+// Form Container, Canvas & Expiration close buttons
 
 $('#formContainerClose').on('click', function() {
 
@@ -57,4 +57,11 @@ $('#CanvasClose').on('click', function() {
 	$('#form_confirm').css({
 		display: 'block'
 	})
+})
+
+$('#expClose').on('click', function() {
+
+	$('#form_exp').css({
+		display: 'none'
+	});
 })

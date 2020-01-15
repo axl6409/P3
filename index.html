@@ -22,18 +22,22 @@
 			<!-- NAVIGATION -->
 			<nav class="navigation slide-in-bottom">
 				<ul>
+
+					<!-- Lien vers les informations de réservation -->
 					<li class="link_block">
 						<a class="nav_links anime_nav" href="#tutorial">
 							<i class="fas fa-info-circle"></i>
 							<p>Infos</p>
 						</a>
 					</li>
+					<!-- Lien vers l'accueil -->
 					<li class="link_block">
 						<a class="nav_links anime_nav" href="#accueil">
 							<i class="fas fa-biking"></i>
 							<p>Accueil</p>
 						</a>
 					</li>
+					<!-- Lien vers la reservation -->
 					<li class="link_block">
 						<a class="nav_links animeNav" href="#informations">
 							<i class="fas fa-map-marked-alt"></i>
@@ -141,15 +145,19 @@
 				
 				<!-- CONTAINER : MAP -->
 				<div id="map_container" class="map_container">
+
+
 					<div id="map" class="map"></div>
 					
 
 					<!-- CONTAINER : FORMULAIRE DE RESERVATION -->
 					<div id="form_container" class="form_container">
 						
+						<!-- Boutton de fermeture -->
 						<div class="form_container_close">
 							<span id="formContainerClose">X</span>
 						</div>
+
 						<!-- INFORMATIONS SUR LA STATION SELECTIONNÉE -->
 						<div id="station_infos" class="station_infos">		
 							<p class="infos_adress">Adresse : </p>
@@ -161,26 +169,32 @@
 						<form method="post" id="form_bikes" class="reserv_form">
 
 							<fieldset>
-
+								
+								<!-- Titre du formulaire -->
 								<legend>Réservez un vélo de cette station</legend>
-
+								
+								<!-- Champ : Nom -->
 								<label for="name" class="form_label">Votre nom : </label>
 								<input type="text" class="form_fields" name="name" id="name" placeholder="Votre nom" required/><br/>
-
+								
+								<!-- Champ : Prénom -->
 								<label for="firstname"  class="form_label">Votre prénom : </label>
 								<input type="text" class="form_fields" name="firstname" id="firstname" placeholder="Votre prénom" required/><br/>
-
+								
+								<!-- Boutton de soumission -->
 								<input type="submit" name="submit" class="form_submit" id="reservation" value="GO">
 
 							</fieldset>
 
 						</form>
 						
+						<!-- Si aucun vélo n'est disponnible -->
 						<p id="nobikes">Réservation impossible (aucun vélo de disponible dans cette station)</p>
 						
 						<!-- CONTAINER : CANVAS -->
 						<div id="canvas_container" class="canvas_container"> <!-- Div du Canvas -->
-
+							
+							<!-- Boutton de fermeture -->
 							<div class="canvas_close">
 								<span id="CanvasClose">X</span>
 							</div>
@@ -194,7 +208,9 @@
 			                </div>
 
 			                <div id="canvas_confirm">
+			                	<!-- Valider -->
 			                    <button type="submit" id="submit_canvas" class="canvas_submit">OK</button>
+			                    <!-- Éffacer -->
 			                    <button type="reset" id="clear_canvas" class="canvas_reset">X</button>
 			                </div>
 			            </div>
@@ -203,26 +219,37 @@
 				
 				<!-- CONTAINER : RÉSERVATION INFOS -->
 				<div id="form_confirm" class="form_confirm">
-					<div id="formConfirmButton" class="form_confirm_button">
+
+					<!-- Boutton réduire du container -->
+					<div id="formConfirmButton" class="form_confirm_close">
 						<div></div>
 						<div></div>
 						<div></div>
 					</div>
+					<!-- Confirmation réservation -->
 					Vélo réservé !
 					</br>
+					<!-- Adresse de la station réservée -->
 					<i class="fas fa-map-marked-alt"></i>
 					<span class="confirm_station" id="confirm_station"></span>
-					</br> 
+					</br>
+					<!-- Nom de la personne qui as réservé -->
 					par :
 					<span class="confirm_name" id="confirm_name">NAME</span>
 					</br>
+					<!-- Temps restant avant l'expiration -->
 					Temps restant :
 					<span class="confimr_timer" id="timer"></span>
 					Avant l'expiration de la session
 				</div>	
 				
-				<div class="reserv_exp">
-					<p id="form_exp">Réservation expirée</p>
+				<div id="form_exp" class="reserv_exp">
+
+					<!-- Boutton de fermeture -->
+					<div class="reserv_exp_close">
+						<span id="expClose">X</span>
+					</div>
+					<p>Réservation expirée</p>
 				</div>
 
 			</section>	
