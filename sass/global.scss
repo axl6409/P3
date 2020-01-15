@@ -1,9 +1,12 @@
 // Stylesheets Main Import
 
+@import "partiels/reset.scss";
 @import "partiels/var.scss";
+@import "partiels/navigation.scss";
 @import "partiels/carousel.scss";
 @import "partiels/map.scss";
 @import "partiels/form.scss";
+@import "partiels/canvas.scss";
 @import "partiels/main.scss";
 
 @media screen and (max-width: $M) {
