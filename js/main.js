@@ -39,3 +39,22 @@ $('#formConfirmButton').on('click', function() {
 	$('#form_confirm').toggleClass('confirm_reveal')
 
 })
+
+// Form Container Close & Canvas Close
+
+$('#formContainerClose').on('click', function() {
+
+	$('#form_container').css({
+		display: 'none'
+	});
+})
+
+$('#CanvasClose').on('click', function() {
+
+	$('#canvas_container').css({
+		display: 'none'
+	});
+	$('#form_confirm').css({
+		display: 'block'
+	})
+})

@@ -18,9 +18,6 @@
 		
 		<!-- HEADER -->
 		<header id="header" class="header">
-			<div class="header_logo">
-				<img class="logo" src="img/cyclist.png" alt="icone du site Toulouse By Bike">
-			</div>
 			
 			<!-- NAVIGATION -->
 			<nav class="navigation">
@@ -29,6 +26,12 @@
 						<a class="nav_links anime_nav" href="#tutorial">
 							<i class="fas fa-info-circle"></i>
 							<p>Infos</p>
+						</a>
+					</li>
+					<li class="link_block">
+						<a class="nav_links anime_nav" href="#accueil">
+							<i class="fas fa-biking"></i>
+							<p>Accueil</p>
 						</a>
 					</li>
 					<li class="link_block">
@@ -42,7 +45,7 @@
 		</header>
 		
 		<!-- MAIN SITE SECTIONS -->
-		<main id="main" class="main">
+		<main id="accueil" class="main">
 			
 			<!-- SECTION : BIENVENUE -->
 			<section id="welcome" class="welcome">
@@ -144,7 +147,9 @@
 					<!-- CONTAINER : FORMULAIRE DE RESERVATION -->
 					<div id="form_container" class="form_container">
 						
-						
+						<div class="form_container_close">
+							<span id="formContainerClose">X</span>
+						</div>
 						<!-- INFORMATIONS SUR LA STATION SELECTIONNÉE -->
 						<div id="station_infos" class="station_infos">		
 							<p class="infos_adress">Adresse : </p>
@@ -176,6 +181,10 @@
 						<!-- CONTAINER : CANVAS -->
 						<div id="canvas_container" class="canvas_container"> <!-- Div du Canvas -->
 
+							<div class="canvas_close">
+								<span id="CanvasClose">X</span>
+							</div>
+
 			                <div id="canvas_message">
 			                    <p>Signez dans la case pour confirmer :</p>
 			                </div>
@@ -201,8 +210,8 @@
 					</div>
 					Vélo réservé !
 					</br>
-					<i class="fas fa-map-marked-alt"></i>
-					<span class="confirm_station" id="confirm_station"></span>
+					<i class="fas fa-map-marked-alt disp-in-block"></i>
+					<span class="confirm_station disp-in-block" id="confirm_station"></span>
 					</br> 
 					par :
 					<span class="confirm_name" id="confirm_name">NAME</span>

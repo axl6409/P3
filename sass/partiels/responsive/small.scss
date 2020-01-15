@@ -12,8 +12,7 @@
 
 	.navigation {
 		width: 100%;
-		right: 0;
-		bottom: 0;
+		top: 1%;
 	}
 	.navigation ul {
 		justify-content: space-between;
@@ -56,20 +55,25 @@
 
 	#before_form {
 		font-size: 25px;
+		top: -15%;
 	}
 
 	.form_container {
-		position: inherit;
 		width: 100%;
 	}
 	
 	.canvas_container {
-		width: 80%;
-		right: 5%;
+		width: 66%;
+		right: 12%;
 		bottom: 7%;
 	}
 
 	.form_confirm {
-		bottom: 40%;
-		width: 40%;
+		bottom: 0;
+		width: 70%;
+		left: 13%;
+	}
+
+	.confirm_reveal {
+		bottom: -220px;
 	}

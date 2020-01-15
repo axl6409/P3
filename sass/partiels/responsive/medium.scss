@@ -1,4 +1,31 @@
 
+
+// Navigation
+
+.navigation {
+	width: 100%;
+	top: 1%;
+}
+
+.navigation ul {
+	justify-content: space-between;
+}
+
+.link_block {
+	width: 16%;
+	height: 95px;
+}
+
+.nav_links {
+	font-size: 50px;
+}
+
+.nav_links p {
+	margin-top: 10%;
+	font-size: 15px;
+}
+
+
 // Caroussel
 
 .container {
@@ -8,29 +35,19 @@
 // Canvas Container
 
 .canvas_container {
-	width: 90%;
+	width: 36%;
 	bottom: 12%;
-	right: 65%;
+	right: 25%;
 }
 
+// Reservation
 
-// Navigation
-
-.navigation {
-	bottom: 3%;
-	right: 0;
+.form_container {
 	width: 100%;
 }
 
-.navigation ul {
-	justify-content: space-between;
+.form_confirm {
+	left: 25%;
+	width: 45%;
 }
 
-.link_block {
-	width: 15%;
-	height: 95px;
-}
-
-.nav_links p {
-	margin-top: 3%;
-}

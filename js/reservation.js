@@ -29,7 +29,7 @@ class Reserv {
 			} else {
 				console.log("LocalStorage n'est pas disponible")
 			}
-			
+
 			if (!localStorage.name) {
 				console.log("Veuillez renseigner vos identifiants")
 			} else {
@@ -55,17 +55,13 @@ class Reserv {
 			console.log("Formulaire Validé")
 			this.canvas.canvasContainer.css('display', 'block')
 			this.canvas.resize()
-			this.beforeForm = $('#before_form')
-			$('#confirm_station').html(this.beforeForm.text().replace(this.regexResa, ''))
-			$('#confirm_name').html(`${this.formFirstName.val()} ${this.formName.val()}`)
-			clearInterval(this.intervalResa)
+			$('#form_confirm').css('display','none')
 			$('#timer').html("")
 		})
 
 		// Evenement au nettoyage du canvas
 		this.canvas.clear.click((e) => {
-			console.log("appuyé")
-			clearInterval(this.intervalResa)
+			console.log("appuyé")			
 			$('#timer').html("")
 			this.canvas.ctx.clearRect(0, 0, this.canvas.canvas.width(), this.canvas.canvas.height())
 			this.canvas.canvasFilled = false
@@ -77,6 +73,10 @@ class Reserv {
 			if (!this.canvas.canvasFilled) {
 				alert("Il manque votre signature")
 			} else {
+				clearInterval(this.intervalResa)
+				this.beforeForm = $('#before_form')
+				$('#confirm_station').html(this.beforeForm.text().replace(this.regexResa, ''))
+				$('#confirm_name').html(`${this.formFirstName.val()} ${this.formName.val()}`)
 				this.stopTimer = new Date().getTime() + this.timer
 				sessionStorage.stopTimer = this.stopTimer
 				console.log(this.stopTimer)

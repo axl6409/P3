@@ -161,7 +161,7 @@ class MapClass {
         $('#station_infos p:eq(1)').append(`Nombre de places : ${newStation.bike_stands}`) // Remplissage de l'info : Nombre de places
         $('#station_infos p:last').append(`Nombre de vélos disponibles : ${newStation.available_bikes}`) // Remplissage de l'info : Nombres de vélos disponibles
         $('#canvas_container').css('display', 'none') // Supprime le canvas s'il est ouvert
-        $('#form_confirm').css('display', 'none') // Efface le message de confirmation 
+        $('#form_confirm').css('bottom', 'none') // Efface le message de confirmation 
         $('#form_exp').css('display', 'none') // Efface le message d'expiration de réservation 
         if(newStation.available_bikes > 0) { // S'il y a des vélos disponibles alors
             $('#form_container form').css('display', 'block') // Affiche le formulaire 
