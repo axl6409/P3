@@ -1,7 +1,7 @@
-#OpenClassrooms - Projet 3
-##Conception d'une carte intéractive de location de vélos
+# OpenClassrooms - Projet 3
+## Conception d'une carte intéractive de location de vélos
 
-###Consignes
+### Consignes
 - Vous devez développer une application simulant la réservation de vélos (Vélo'v) dans Lyon. 
 - Ces vélos sont répartis dans de nombreuses stations dans la ville. L'utilisateur doit pouvoir en réserver un depuis son navigateur (à condition qu'il reste des vélos disponibles à la station !).
 - La réservation sera temporairement enregistrée sur le navigateur du visiteur.
