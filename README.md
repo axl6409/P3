@@ -15,11 +15,11 @@ La page d’accueil de l’application affichera un diaporama de photos et de te
 
 #### Carte des vélos
 
-En-­dessous du diaporama se trouve une carte exploitant l'[API GoogleMaps] avec la localisation de toutes les stations de vélos, positionnées à l’aide de marqueurs.
-Un clic sur un marqueur affiche l’état de la station dans un panneau construit en [HTML] et
-[CSS] à côté de la carte [Google Maps].
+En-­dessous du diaporama se trouve une carte exploitant l'API GoogleMaps avec la localisation de toutes les stations de vélos, positionnées à l’aide de marqueurs.
+Un clic sur un marqueur affiche l’état de la station dans un panneau construit en HTML et
+CSS à côté de la carte Google Maps.
 
-La localisation et l'état de chaque station (ouverte, en travaux, combien de vélos et de places sont disponibles, etc.) est fourni via l'[API de JCDecaux]. Les données doivent provenir de l'API temps réel.
+La localisation et l'état de chaque station (ouverte, en travaux, combien de vélos et de places sont disponibles, etc.) est fourni via l'API de JCDecaux. Les données doivent provenir de l'API temps réel.
 
 #### Réservation d'un vélo
 
