@@ -31,6 +31,10 @@
     float: right;
 }
 
+.form_container_close span {
+    cursor: pointer;
+}
+
 .station_infos p {
     font-size: 20px;
     margin-top: 5%;
@@ -39,16 +43,6 @@
     clear: both;
 }
 
-.close_form_button {
-    position: absolute;
-    top: 2%;
-    right: 3%;
-    border-radius: 30px;
-    border: none;
-    height: 40px;
-    width: 40px;
-    background-color: transparent;
-}
 
 .station_infos {
     text-align: left;
@@ -56,10 +50,6 @@
     height: 40%;
 }
 
-.close_form_button i {
-    font-size: 28px;
-    color: red;
-}
 
 .reserv_form {
     width: 100%;
@@ -141,6 +131,7 @@
     border: 1px solid black;
     border-radius: 25px;
     padding: 3px;
+    cursor: pointer;
 }
 
 .canvas_submit {
@@ -199,6 +190,7 @@
     padding: 2%;
     text-align: center;
     background-color: white;
+    cursor: pointer;
 }
 
 .confirm_reveal {
