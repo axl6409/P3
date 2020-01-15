@@ -7,10 +7,11 @@
 @import "partiels/form.scss";
 @import "partiels/main.scss";
 
+@media screen and (max-width: $M) {
+	@import "partiels/responsive/medium.scss";
+}
+
 @media screen and (max-width: $S) {
 	@import "partiels/responsive/small.scss";
 }
 
-@media screen and (max-width: $M) {
-	@import "partiels/responsive/medium.scss";
-}

@@ -169,13 +169,17 @@
     letter-spacing: 2px;
     position: fixed;
     z-index: 99;
-    bottom: 0%;
     left: 2%;
+    bottom: 0%;
     border-radius: 2%;
     box-shadow: 0px 0px 30px 0px black;
     padding: 2%;
     text-align: center;
     background-color: white;
+}
+
+.confirm_reveal {
+    bottom: -42%;
 }
 
 .form_confirm_button {

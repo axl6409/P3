@@ -12,3 +12,25 @@
 	bottom: 12%;
 	right: 65%;
 }
+
+
+// Navigation
+
+.navigation {
+	bottom: 3%;
+	right: 0;
+	width: 100%;
+}
+
+.navigation ul {
+	justify-content: space-between;
+}
+
+.link_block {
+	width: 15%;
+	height: 95px;
+}
+
+.nav_links p {
+	margin-top: 3%;
+}

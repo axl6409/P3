@@ -1,4 +1,5 @@
 
+// Intégration des Objets JS
 
 $(document).ready(function() {
 	
@@ -29,3 +30,12 @@ $(document).ready(function() {
 		return;
 	});
 });
+
+
+// Pop Up Réservation
+
+$('#formConfirmButton').on('click', function() {
+
+	$('#form_confirm').toggleClass('confirm_reveal')
+
+})

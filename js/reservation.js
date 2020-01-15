@@ -8,13 +8,12 @@ class Reserv {
 		this.form = $(form) 		// Container principal du formulaire
 		this.timer = timer 			// Initialisation du timer
 		this.canvas = canvas 		// Class Canvas
-		this.beforeForm = $('#before_form')
-		this.formName = this.form.find('#name')
-		this.formFirstName = this.form.find('#firstname')
-		this.formConfirm = $('#form_confirm')
+		this.beforeForm = $('#before_form') // Container du nom de la station affiché au dessus de la carte
+		this.formName = this.form.find('#name') // Le nom entré dans le formualire
+		this.formFirstName = this.form.find('#firstname') // Le prénom entré dans le formulaire
 		this.intervalResa = null
-		this.stopTimer = null
-		this.regexResa = /......../
+		this.stopTimer = null // Timer de la réservation
+		this.regexResa = /......../ //
 		this.documentHeight = $(document).height()
 		this.initSettings()
 	} // Fin du Constructor
@@ -30,7 +29,7 @@ class Reserv {
 			} else {
 				console.log("LocalStorage n'est pas disponible")
 			}
-
+			
 			if (!localStorage.name) {
 				console.log("Veuillez renseigner vos identifiants")
 			} else {
@@ -95,6 +94,8 @@ class Reserv {
 			}
 		})
 
+
+
 		
 
 
@@ -104,7 +105,7 @@ class Reserv {
 		var storage
 		try {
 			storage = window[type]
-				x = '__storage_test__'
+			var	x = '__storage_test__'
 			storage.setItem(x, x)
 			storage.removeItem(x)
 			return true
