@@ -6,9 +6,12 @@ $(document).ready(function() {
 	let slider = new Carousel(document.querySelector('#carousel'), {
 	    slidesVisible: 2, // Nombres de Slides Visibles
 	    slidesToScroll: 1,  // Nombres de Slides à faire defiler
-	    loop: true,  // Lecture en Boucle
+	    animation: true, // Animation de Slide
+	    loop: false,  // Lecture en Boucle
 	    navigation: true,  // Bouton de Navigation
-	    infinite: true  // Boucle infinie
+	    infinite: true,  // Boucle Infinie
+	    play: false,  // Lecture Automatique
+	    timer: 5000 // Timer en millisecondes
 	})
 	let map = new MapClass('#map_container', 'map', 43.6050, 1.4404, 12, 'https://api.jcdecaux.com/vls/v1/stations?contract=Toulouse&apiKey=0a5fb39e32787526595038c04a59ececb2b712ed')
 	let reservation = new Reserv('#form_bikes', 20 * 60 * 1000, new CanvasClass('#canvas_div', '#canvas_resa'))

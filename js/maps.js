@@ -23,19 +23,16 @@ class MapClass {
 		this.tilelayer.addTo(this.map) // Ajout du design de la map
 		this.stationModel = { // Création de l'objet station
 
-			init: function (name, address, positionlat, positionlng, banking, status, bikestands, availableBS, availableB, lastupdate) {
+			init: function (name, address, positionlat, positionlng, status, availableBS, availableB) {
 				this.name = name            // Nom de la station
                 this.address = address      // Adresse de la station
                 this.position = {
                     lat: positionlat,       // Latitude de la station
                     lng: positionlng        // Longitude de la station
                 };
-                this.banking = banking      // indique la présence d'un terminal de payement
                 this.status = status        // indique l'état de la station
-                this.bike_stands = bikestands   // nombres de stands pour vélo
-                this.available_bike_stands = availableBS    // nombre de stand pour vélo disponibles
+                this.available_bike_stands = availableBS   // nombres de stands pour vélo disponibles
                 this.available_bikes = availableB   // nombres de vélos disponibles
-                this.last_update = lastupdate       // dernière mise à jour
 			}
 		}
 
@@ -108,19 +105,16 @@ class MapClass {
 
         for (let station of stations) { // création d'une classe pour chaque station
 
-            // Création d'un modele de station
+            // Création du modele de station
             let newStation = Object.create(this.stationModel);
             newStation.init(
                 station.name, 
                 station.address, 
                 station.position.lat, 
                 station.position.lng, 
-                station.banking, 
                 station.status, 
-                station.bike_stands, 
                 station.available_bike_stands, 
-                station.available_bikes, 
-                station.last_update);
+                station.available_bikes);
 
             let myIcon = this.greenIcon; // au début de la boucle, l'icône est vert
 
@@ -158,7 +152,7 @@ class MapClass {
         $('#form_container form').css('display', 'none') // Efface le formulaire
         $('#nobikes').css('display', 'none') // Efface le message en cas de réservation impossible
         $('#station_infos p:first').append(`Adresse : ${newStation.address.toLowerCase()}`) // Remplissage de l'info : Adresse
-        $('#station_infos p:eq(1)').append(`Nombre de places : ${newStation.bike_stands}`) // Remplissage de l'info : Nombre de places
+        $('#station_infos p:eq(1)').append(`Nombre de stands disponibles : ${newStation.available_bike_stands}`) // Remplissage de l'info : Nombre de places
         $('#station_infos p:last').append(`Nombre de vélos disponibles : ${newStation.available_bikes}`) // Remplissage de l'info : Nombres de vélos disponibles
         $('#canvas_container').css('display', 'none') // Supprime le canvas s'il est ouvert
         $('#form_confirm').css('bottom', 'none') // Efface le message de confirmation 

@@ -34,7 +34,7 @@ class CanvasClass {
 			console.log("canvas rempli")
 		}
 
-		this.draw = this.click.bind(this) // Crée une nouvelle fonction attaché à la classe (this sera toujours la classe)
+		this.draw = this.click.bind(this) // Crée une nouvelle fonction attaché à la classe (this sera toujours dans le contexte de la classe)
 		this.initSettings() // Lance les premières propriétés + events
 
 	} // Constructor END

@@ -213,10 +213,11 @@ table {
 
 .item {
   margin: 40px 10px;
-  height: 550px;
   border-radius: 5%;
+  height: 550px;
+  padding: 3%;
   background-color: #FFF;
-  box-shadow: 0 15px 35px #3232321a, 0 5px 15px #0000001a;
+  box-shadow: 0px 20px 35px -19px #101010;
   transition: transform 0.3s;
   transform: translate3d(0, -1px, 0);
 }
@@ -231,7 +232,6 @@ table {
   justify-content: space-evenly;
   border-radius: 5%;
   height: 100%;
-  box-shadow: 0px 20px 35px -19px #101010;
 }
 
 .item__title {
@@ -254,7 +254,7 @@ table {
 }
 
 .item__image img {
-  width: 96%;
+  width: 70%;
 }
 
 /* Map */
@@ -519,7 +519,7 @@ p, span, div {
 /* Welcome */
 .welcome {
   width: 100%;
-  height: 100vh;
+  height: 1000px;
   position: relative;
 }
 
@@ -528,7 +528,7 @@ p, span, div {
   position: absolute;
   left: 20%;
   right: 20%;
-  top: 30%;
+  top: 45%;
 }
 
 .welcome_container h1 {
@@ -548,14 +548,14 @@ p, span, div {
 /* TUTORIAL */
 #tutorial {
   width: 100%;
-  height: 100vh;
+  height: 1000px;
   position: relative;
 }
 
 /* INFORMATIONS */
 #informations {
   width: 100%;
-  height: 100vh;
+  height: 1000px;
   position: relative;
 }
 
@@ -630,7 +630,7 @@ p, span, div {
   }
 
   .link_block {
-    width: 22%;
+    width: 30%;
     height: 60px;
   }
 
@@ -649,6 +649,10 @@ p, span, div {
 
   .container {
     top: 10%;
+  }
+
+  .item {
+    height: 400px;
   }
 
   .map_container {
@@ -679,8 +683,8 @@ p, span, div {
 
   .form_confirm {
     bottom: 0;
-    width: 70%;
-    left: 13%;
+    width: 96%;
+    left: 0;
   }
 
   .confirm_reveal {

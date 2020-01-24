@@ -18,7 +18,7 @@
 		justify-content: space-between;
 	}
 	.link_block {
-		width: 22%;
+		width: 30%;
 		height: 60px;
 	}
 	.nav_links {
@@ -38,7 +38,10 @@
 	.container {
 		top: 10%;
 	}
-
+	
+	.item {
+		height: 400px;
+	}
 
 // Reservation
 	
@@ -70,8 +73,8 @@
 
 	.form_confirm {
 		bottom: 0;
-		width: 70%;
-		left: 13%;
+		width: 96%;
+		left: 0;
 	}
 
 	.confirm_reveal {
