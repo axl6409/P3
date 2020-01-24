@@ -27,7 +27,7 @@ class Carousel {
 			slidesToScroll: 1, 
 			slidesVisible: 1,
 			animation: true,
-			loop: true,
+			loop: false,
 		    navigation: true,
 		    infinite: true,
 		    play: false,
@@ -173,7 +173,7 @@ class Carousel {
 				
 			this.interval = window.setInterval(() => { // Définis l'intervale
 				
-				this.gotoItem(this.currentItem + 1, true) // Appel de la methode GotoItem avec le slide auquel j'ajoute 1 et l'animation à true
+				this.gotoItem(this.currentItem + 1, this.options.animation) // Appel de la methode GotoItem avec le slide auquel j'ajoute 1 et l'animation à true
 				
 			}, this.options.timer) // 5 secondes entre les défillements
 			
@@ -192,7 +192,7 @@ class Carousel {
 	 *
 	 * Déplace le carousel vers l'élément ciblé
 	 * @param {number} index
-	 * @param {boolean} [animation = true]
+	 * @param {boolean} [animation = this.options.animation]
 	 *
 	 */
 
@@ -231,8 +231,8 @@ class Carousel {
 	 * Déplace le container pour donner l'impression d'un slide infini
 	 */
 	resetInfinite () {
-	    if (this.currentItem <= this.options.slidesToScroll) {
-	      this.gotoItem(this.currentItem + (this.items.length - 2 * this.offset), false) // Déplacement vers la gauche 
+	    if (this.currentItem <= this.options.slidesToScroll) { // Si l'item courant est inférieur ou égal au nombre de slides à défiler
+	      this.gotoItem(this.currentItem + (this.items.length - 2 * this.offset), false) // Déplacement vers la gauche, l'item courant auquel j'ajoute le nombre d'éléments
 	    } else if (this.currentItem >= this.items.length - this.offset) {
 	      this.gotoItem(this.currentItem - (this.items.length - 2 * this.offset), false) // Déplacement vers la droite
 	    }
