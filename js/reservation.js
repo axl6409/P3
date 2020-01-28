@@ -131,12 +131,13 @@ class Reserv {
 	loopTimer() {
 		this.intervalResa = setInterval( () => {
 			let startTimer = new Date().getTime()
-			let distance = this.stopTimer - startTimer // Difference entre la date et heure actuelle avec les 20 minutes et celle de getTime (1 janv 1970)
+			let distance = this.stopTimer - startTimer // Difference entre la date et heure actuelle avec les 20 minutes et celle de getTime
 			let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) // Nombre total de minutes (en millisecondes)
 			let seconds = Math.floor((distance % (1000 * 60)) / 1000) // Nombre total de secondes (en millisecondes)
 			$('#timer').html(`${minutes}m ${seconds}s`) // Retourne un timer avec les minutes et secondes
 
-			if (distance < 0) {  // Si le timer arrive à zéro
+			// Si le timer arrive à zéro
+			if (distance < 0) {  
 				clearInterval(this.intervalResa) // Nettoyage des informations de la réservation: Station, Timer, Nom Prenom
 				$('#form_confirm').css('display', 'none') // Enleve le formulaire de confirmation de la réservation
 				$('#form_exp').css('display', 'block') // Affiche la popup de réservation expirée
