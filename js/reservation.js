@@ -5,19 +5,25 @@ class Reserv {
 	// Constructeur
 	constructor(form, timer, canvas) {
 
+		// Parametres
 		this.form = $(form) 		// Container principal du formulaire
 		this.timer = timer 			// Initialisation du timer
-		this.canvas = canvas 		// Class Canvas
+		this.canvas = canvas 		// Objet Canvas
+
+		// DOM
 		this.beforeForm = $('#before_form') // Container du nom de la station affiché au dessus de la carte
 		this.formName = this.form.find('#name') // Le nom entré dans le formualire
 		this.formFirstName = this.form.find('#firstname') // Le prénom entré dans le formulaire
-		this.intervalResa = null
+
+		// Reservation Informations
+		this.intervalResa = null  // L'intervale de reservation pour le timer
 		this.stopTimer = null // Timer de la réservation
-		this.regexResa = /......../ //
+		this.regexResa = /......../ // Le remplacement des caracteres et numéros présents avant le nom de la station
 		this.documentHeight = $(document).height()
 		this.initSettings()
 	} // Fin du Constructor
 
+	// Initialisation des réglages pour la réservation
 	initSettings() {
 
 		// Quand la page est prête
@@ -54,7 +60,6 @@ class Reserv {
 			event.preventDefault()
 			console.log("Formulaire Validé")
 			this.canvas.canvasContainer.css('display', 'block')
-			this.canvas.resize()
 			$('#form_confirm').css('display','none')
 			$('#timer').html("")
 		})
@@ -62,7 +67,6 @@ class Reserv {
 		// Evenement au nettoyage du canvas
 		this.canvas.clear.click((e) => {
 			console.log("appuyé")			
-			$('#timer').html("")
 			this.canvas.ctx.clearRect(0, 0, this.canvas.canvas.width(), this.canvas.canvas.height())
 			this.canvas.canvasFilled = false
 		})
@@ -76,7 +80,7 @@ class Reserv {
 
 				clearInterval(this.intervalResa) // Nettoyage du timer
 
-				this.beforeForm = $('#before_form')
+
 				$('#confirm_station').html(this.beforeForm.text().replace(this.regexResa, ''))
 				$('#confirm_name').html(`${this.formFirstName.val()} ${this.formName.val()}`)
 				this.stopTimer = new Date().getTime() + this.timer
@@ -90,13 +94,13 @@ class Reserv {
 				$('#form_confirm').css('display', 'block')
 				$('#canvas_container').css('display', 'none')
 
-				$(window).on('beforeunload', (event) => {
-					event.preventDefault()
-					alert("Do you really want to close the window")
-				})
+
 			}
 		})
 
+		window.addEventListener("beforeunload", function() {
+			alert("Do you really want to close the window")
+		})
 	}
 
 	storageAvailable(type) {
@@ -127,7 +131,7 @@ class Reserv {
 	loopTimer() {
 		this.intervalResa = setInterval( () => {
 			let startTimer = new Date().getTime()
-			let distance = this.stopTimer - startTimer // Difference entre la date et heure actuelle et celle de getTime (1 janv 1970)
+			let distance = this.stopTimer - startTimer // Difference entre la date et heure actuelle avec les 20 minutes et celle de getTime (1 janv 1970)
 			let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) // Nombre total de minutes (en millisecondes)
 			let seconds = Math.floor((distance % (1000 * 60)) / 1000) // Nombre total de secondes (en millisecondes)
 			$('#timer').html(`${minutes}m ${seconds}s`) // Retourne un timer avec les minutes et secondes
@@ -141,7 +145,8 @@ class Reserv {
 		}, 1000)
 	}
 
-	populateStorage() { // Stockage des informations du formulaire dans localStorage et sessionStorage
+	// Stockage des informations du formulaire dans localStorage et sessionStorage
+	populateStorage() { 
 		localStorage.name = this.formName.val() // Stockage du nom dans "Local"
 		localStorage.firstname = this.formFirstName.val() // Stockage du prenom dans "Local"
 		sessionStorage.station = $('#confirm_station').text() // Stockage du nom de la station dans "Session"
@@ -154,13 +159,11 @@ class Reserv {
 	setStyles() {
 		let currentName = localStorage.name // Le nom de la personne
 		let currentFirstName = localStorage.firstname // Le prénom de la personne
-		let currentStation = sessionStorage.station // La station réservé
 
 		// Les valeurs à insérer pour la prochaine saisie
 		this.formName.val(currentName) // Le champ 'nom' du formulaire
 		this.formFirstName.val(currentFirstName) // Le champ 'prénom' du formulaire
-		$('#confirm_station').html(currentStation) // Le champ ou est affiché le nom de la station
-
+		
 		console.log(`${currentFirstName} ${currentName}`)
 	}
 }

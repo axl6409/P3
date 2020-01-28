@@ -20,7 +20,7 @@ class MapClass {
             id: 'mapbox.streets',
             accessToken: 'pk.eyJ1IjoiYXhsNjQwOSIsImEiOiJjanhlcW9sZDYwcG5kNDFsNzI1b3hzZGIwIn0.Pj1oOeEmXLyQ1-Scsi6Kow'
         });
-		this.tilelayer.addTo(this.map) // Ajout du design de la map
+		this.tilelayer.addTo(this.map) // Ajout des calques de titres à la map
 		this.stationModel = { // Création de l'objet station
 
 			init: function (name, address, positionlat, positionlng, status, availableBS, availableB) {
@@ -61,28 +61,29 @@ class MapClass {
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
             shadowSize: [41, 41],
         })
-        this.document = $(document)
-        this.regex = /......./; // enlève les chiffres et le tiret du nom de la station
-        this.name = this.container.find('#name');
-        this.firstname = this.container.find('#firstname');
-        this.initSettings();
+        this.document = $(document)  // Cible la page
+        this.replace = /......./; // enlève les chiffres et le tiret du nom de la station
+        this.name = this.container.find('#name');  // Cible le container name
+        this.firstname = this.container.find('#firstname');  // Cible le container firstname
+        this.initSettings();  // Appel methode initSettings
         
 
     } // fin du constructor
 
 
+    // Initialisation du lancement de la methode AJAX, lorsque le document est prêt
     initSettings() {
         this.document.ready( ($) => { // quand le DOM est prêt, on lance la méthode AJAX
-            this.launchAjax();
+            this.launchAjax();  // Appel de la methode launchAjax
         });
     }
 
+    // Lancement de la requête AJAX
     launchAjax() {
             $.ajax({
                 url: this.ajaxURL, // Ressource ciblée
                 type: 'GET',       // Type de la requete HTTP
                 dataType: 'json',  // Type de données à recevoir : ici JSON
-                data: {param1: 'value1'},
             })
 
             // Requete AJAX effectuée avec Succes
@@ -100,7 +101,8 @@ class MapClass {
             });
         };
 
-    ajaxOK(response) { // fonction qui se déclenche quand  l'appel AJAX s'est terminé avec succès
+    // Construction des stations avec les résultats de la requete AJAX
+    ajaxOK(response) {
         let stations = response; // le tableau JS obtenu (jQuery traduit en JS)
 
         for (let station of stations) { // création d'une classe pour chaque station
@@ -133,20 +135,19 @@ class MapClass {
             let newMarker = L.marker(
                              [newStation.position.lat, newStation.position.lng],
                              {icon: myIcon}, 
-                             {opacity: 1}, 
-                             {bubblingMouseEvents: true}, 
-                             {interactive: true});
-            newMarker.bindPopup(newStation.name.replace(this.regex, '')); // Affiche le nom de la station sur le marqueur, sur la carte
+                             {opacity: 1},  
+                            );
+            newMarker.bindPopup(newStation.name.replace(this.replace, '')); // Affiche le nom de la station sur le marqueur, sur la carte
             newMarker.addTo(this.map).on('click', (e) => {
                 this.newMarkerClic(newStation); // Appel de la methode newMarkerClick, au click sur une icone de station
             });
         };
     };
 
-    
+    // Modification du DOM
     newMarkerClic(newStation) {
         $('#before_form h2').html('') 
-        $('#before_form h2').append(newStation.name.replace(this.regex, '     ')) // ajoute des espaces, à la place des tirets et chiffres du nom de la station
+        $('#before_form h2').append(newStation.name.replace(this.replace, '     ')) // ajoute des espaces, à la place des tirets et chiffres du nom de la station
         $('#form_container').css('display', 'block') // Affiche le bloc d'infos de la station
         $('#station_infos p').html('') // Efface les dernières valeurs d'information
         $('#form_container form').css('display', 'none') // Efface le formulaire
