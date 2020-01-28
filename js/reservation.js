@@ -98,9 +98,9 @@ class Reserv {
 			}
 		})
 
-		window.addEventListener("beforeunload", function() {
-			alert("Do you really want to close the window")
-		})
+		window.onbeforeunload = function() {
+		    return "";
+		 };
 	}
 
 	storageAvailable(type) {

@@ -50,8 +50,8 @@
 // Elements de navigation
 .carousel__next, .carousel__prev {
 	position: absolute;
-	width: 40px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 	background: $white url(img/next.svg) center center no-repeat;
 	background-size: 20px 20px;
 	top: 50%;
@@ -80,8 +80,8 @@
 // Elements Play & Pause
 .carousel__play {
 	position: absolute;
-	width: 40px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 	background: $white url(img/play.svg) center center no-repeat;
 	right: auto;
 	background-size: 20px 20px;
