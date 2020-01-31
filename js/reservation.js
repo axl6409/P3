@@ -52,6 +52,7 @@ class Reserv {
 				$('#confirm_name').html(`${localStorage.firstname} ${localStorage.name}`)
 				console.log(sessionStorage.station)
 				this.loopTimer()
+
 			}
 		})
 
@@ -80,7 +81,6 @@ class Reserv {
 
 				clearInterval(this.intervalResa) // Nettoyage du timer
 
-
 				$('#confirm_station').html(this.beforeForm.text().replace(this.regexResa, ''))
 				$('#confirm_name').html(`${this.formFirstName.val()} ${this.formName.val()}`)
 				this.stopTimer = new Date().getTime() + this.timer
@@ -98,9 +98,6 @@ class Reserv {
 			}
 		})
 
-		window.onbeforeunload = function() {
-		    return "";
-		 };
 	}
 
 	storageAvailable(type) {

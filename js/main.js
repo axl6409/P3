@@ -5,7 +5,7 @@ $(document).ready(function() {
 	
 	let slider = new Carousel(document.querySelector('#carousel'), {
 	    slidesVisible: 2, // Nombres de Slides Visibles
-	    slidesToScroll: 1,  // Nombres de Slides à faire defiler
+	    slidesToScroll: 2,  // Nombres de Slides à faire defiler
 	    animation: true, // Animation de Slide
 	    loop: false,  // Lecture en Boucle
 	    navigation: true,  // Bouton de Navigation

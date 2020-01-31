@@ -85,7 +85,7 @@ class Carousel {
 			}
 		})
 		if (this.options.infinite) {
-	      this.container.addEventListener('transitionend', this.resetInfinite.bind(this))
+	      this.container.addEventListener('transitionend', this.resetInfinite.bind(this)) // Attend que l'animation soit terminée
 	    }
 
 	} 
@@ -143,14 +143,13 @@ class Carousel {
 	 */
 
 	next () {
-
-		this.gotoItem(this.currentItem + this.slidesToScroll) // Appel de la methode gotoItem et parametres : index de l'item + nombres de slide a defiler
 		console.log(this.currentItem)
+		this.gotoItem(this.currentItem + this.slidesToScroll) // Appel de la methode gotoItem et parametres : index de l'item + nombres de slide a defiler
 	}
 
 	prev () {
-		this.gotoItem(this.currentItem - this.slidesToScroll) // Appel de la methode gotoItem et parametres : index de l'item - nombres de slide a defiler
 		console.log(this.currentItem)
+		this.gotoItem(this.currentItem - this.slidesToScroll) // Appel de la methode gotoItem et parametres : index de l'item - nombres de slide a defiler
 	}
 
 
@@ -197,6 +196,7 @@ class Carousel {
 	 */
 
 	gotoItem (index, animation = this.options.animation) {
+		console.log(index)
 	    if (index < 0) { // Si l'index est inférieur à 0 il faut revenir en arrière
 		    if (this.options.loop) { // Si l'option loop est activée
 		        index = this.items.length - this.slidesVisible // index = le nombres d'éléments, moins le nombres d'éléments visibles
@@ -217,13 +217,12 @@ class Carousel {
 	      	this.container.style.transition = 'none' // Aucune animation de transition
 	    }
 	    this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)' // Applique l'animation translate3d avec translateX, Y, Z
-	    this.container.offsetHeight
+	    this.container.offsetHeight // Force Repaint
 	    if (animation === false) {
 	      	this.container.style.transition = ''
 	    }
 	    this.currentItem = index // Définis l'item courant comme index
 	    this.moveCallbacks.forEach(cb => cb(index)) // Appel des callbacks les uns après les autres avec en l'index courant en parametre
-
 	}
 
 
@@ -256,7 +255,7 @@ class Carousel {
 
 
 	onWindowResize () {
-		let mobile = window.innerWidth < 1200 // Déclare la variable mobile qui cible la fenetre avec une largeur inferieure à 800px
+		let mobile = window.innerWidth < 1200 // Déclare la variable mobile qui cible la fenetre avec une largeur inferieure à 1200px
 		if (mobile !== this.isMobile) { // Si la valeur de mobile est differente de celle de this.isMobile
 			this.isMobile = mobile // Change la valeur de la propriété d'instance
 			this.setStyle() // Aplique le style
