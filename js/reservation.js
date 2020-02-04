@@ -20,6 +20,8 @@ class Reserv {
 		this.stopTimer = null // Timer de la réservation
 		this.regexResa = /......../ // Le remplacement des caracteres et numéros présents avant le nom de la station
 		this.documentHeight = $(document).height()
+
+		// InitSetting
 		this.initSettings()
 	} // Fin du Constructor
 

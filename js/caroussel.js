@@ -217,7 +217,7 @@ class Carousel {
 	      	this.container.style.transition = 'none' // Aucune animation de transition
 	    }
 	    this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)' // Applique l'animation translate3d avec translateX, Y, Z
-	    this.container.offsetHeight // Force Repaint
+	    this.container.offsetHeight
 	    if (animation === false) {
 	      	this.container.style.transition = ''
 	    }

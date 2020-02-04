@@ -7,9 +7,9 @@ $(document).ready(function() {
 	    slidesVisible: 2, // Nombres de Slides Visibles
 	    slidesToScroll: 2,  // Nombres de Slides à faire defiler
 	    animation: true, // Animation de Slide
-	    loop: false,  // Lecture en Boucle
+	    loop: true,  // Lecture en Boucle
 	    navigation: true,  // Bouton de Navigation
-	    infinite: true,  // Boucle Infinie
+	    infinite: false,  // Boucle Infinie
 	    play: false,  // Lecture Automatique
 	    timer: 5000 // Timer en millisecondes
 	})
